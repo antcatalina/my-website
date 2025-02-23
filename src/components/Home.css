@@ -1,0 +1,24 @@
+html {
+    background-color: #212529;
+}
+
+.top-container {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    background-color: #140180;
+    width: 100%;
+}
+
+.bottom-container {
+    background-color: #000;
+    color: #fff;
+}
+
+.main-container {
+    flex: 1;
+}
+.avatar {
+    width: 345px;
+    border-radius: 50%;
+    margin-top: 100px !important;
+}
