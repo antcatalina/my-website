@@ -44,7 +44,8 @@ const Home = () => {
               <h2 className="text-warning">
                 <FaFolderOpen className="me-2" /> Projects
               </h2>
-              <h5 className="pt-5">
+              <hr />
+              <h5 className="pt-2">
                 <b>
                   Battery Manager Operations Display / Software Development @
                   Philadelphia Scientific, LLC
@@ -57,7 +58,8 @@ const Home = () => {
                 real-time battery maintenance activities for distribution
                 centers in interactive graphs and tables.
               </p>
-              <h5 className="pt-5">
+              <hr />
+              <h5 className="pt-2">
                 <b>
                   Battery Manager Touch Computer Web App / Software Development
                   @ Philadelphia Scientific, LLC
@@ -70,7 +72,8 @@ const Home = () => {
                 statistics for industrial batteries. In use by several Fortune
                 500 companies.
               </p>
-              <h5 className="pt-5">
+              <hr />
+              <h5 className="pt-2">
                 <b>
                   Spectrum Analysis Tool / Software Development @ Regulus Group,
                   LLC w/ FAA
@@ -81,7 +84,8 @@ const Home = () => {
                 Responsible for developing the user interface for a software
                 tool developed for the Federal Aviation Administration (FAA).
               </p>
-              <h5 className="pt-5">
+              <hr />
+              <h5 className="pt-2">
                 <b>
                   Surveillance Spotlight Dashboard / Software Development @
                   Regulus Group, LLC w/ FAA
@@ -94,7 +98,8 @@ const Home = () => {
                 sources. Users can choose between daily and monthly data, and
                 the data is populated into an interactive dashboard.
               </p>
-              <h5 className="pt-5">
+              <hr />
+              <h5 className="pt-2">
                 <b>
                   Vulnerability Alert System Tool (VAST) / Software Engineering
                   @ Rowan University w/ Lockheed Martin
@@ -131,9 +136,10 @@ const Home = () => {
                   <div className="ms-2 mt-1">Work Experience</div>
                 </h2>
               </div>
-              <h4 className="pt-5">
+              <hr />
+              <h4 className="pt-2">
                 <a href="https://phlsci.com" target="_blank">
-                  <img src={psLogo} alt="Avatar" width="45px" />
+                  <img src={psLogo} alt="Avatar" width="40px" />
                 </a>
                 <b className="ms-3">
                   Software Engineer /
@@ -166,9 +172,9 @@ const Home = () => {
                   </li>
                 </ul>
               </p>
-              <h4 className="pt-5">
+              <h4 className="pt-3">
                 <a href="https://regulus-group.com" target="_blank">
-                  <img src={regulus} alt="Avatar" width="45px" />
+                  <img src={regulus} alt="Avatar" width="38px" />
                 </a>
                 <b className="ms-3">
                   Software Engineer /
@@ -197,12 +203,12 @@ const Home = () => {
                   </li>
                 </ul>
               </p>
-              <h4 className="pt-5">
+              <h4 className="pt-3">
                 <a
                   href="https://www.lockheedmartin.com/en-us/index.html"
                   target="_blank"
                 >
-                  <img src={lockheed} alt="Avatar" width="45px" />
+                  <img src={lockheed} alt="Avatar" width="38px" />
                 </a>
                 <b className="ms-3">
                   Student Software Developer /
@@ -241,37 +247,43 @@ const Home = () => {
           </>
         ) : (
           <>
-            <div className="p-5 container d-flex justify-content-center bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3">
-              <div className="p-5">
-                <h4 className="pt-3 text-warning">Hi, my name is Anthony.</h4>
-                <h1 className="pt-3">
-                  I am a Software Engineer from the Denver area.
-                </h1>
-                <p className="pt-3">
-                  I specialize in web development, building scalable and
-                  high-performance products with seamless user experiences.
-                </p>
-                <p>
-                  With over four years of professional experience, I contribute
-                  to building reliable and efficient software solutions. My work
-                  has powered applications used by Fortune 500 companies,
-                  ensuring performance, scalability, and maintainability.
-                </p>
-                <HomeNav
-                  showProjects={showProjects}
-                  showWork={showWork}
-                  showEdu={showEdu}
-                  setShowProjects={setShowProjects}
-                  setShowWork={setShowWork}
-                  setShowEdu={setShowEdu}
-                />
-              </div>
-              <div>
-                <img
-                  src={avatar}
-                  className="p-5 avatar mx-auto d-block"
-                  alt="Avatar"
-                />
+            <div className="container p-5">
+              <div className="row align-items-center bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3 p-5">
+                {/* Image on top on small screens, right on large screens */}
+                <div className="col-lg-5 col-md-12 text-center order-md-1 order-lg-2">
+                  <img
+                    src={avatar}
+                    className="avatar img-fluid p-3"
+                    alt="Avatar"
+                  />
+                </div>
+
+                {/* Text content on the bottom on small screens, left on large screens */}
+                <div className="col-lg-7 col-md-12 p-5 order-md-2 order-lg-1">
+                  <h4 className="pt-3 text-warning">Hi, my name is Anthony.</h4>
+                  <h1 className="pt-3">
+                    I am a Software Engineer from the Denver area.
+                  </h1>
+                  <p className="pt-3">
+                    I specialize in web development, building scalable and
+                    high-performance products with seamless user experiences.
+                  </p>
+                  <p>
+                    With over four years of professional experience, I
+                    contribute to building reliable and efficient software
+                    solutions. My work has powered applications used by Fortune
+                    500 companies, ensuring performance, scalability, and
+                    maintainability.
+                  </p>
+                  <HomeNav
+                    showProjects={showProjects}
+                    showWork={showWork}
+                    showEdu={showEdu}
+                    setShowProjects={setShowProjects}
+                    setShowWork={setShowWork}
+                    setShowEdu={setShowEdu}
+                  />
+                </div>
               </div>
             </div>
           </>
@@ -282,7 +294,7 @@ const Home = () => {
         <div className="bottom-container text-center bg-dark-subtle text-dark-emphasis mt-3 pt-5 pb-4">
           <Container>
             <Row>
-              <Col>
+              <Col xs={12} md={4} className="text-center">
                 <FaReact size={60} style={{ color: "#ffc107" }} />
                 <h3 className="pt-3 pb-2">Frontend</h3>
                 {!showStack ? (
@@ -298,7 +310,7 @@ const Home = () => {
                   </div>
                 )}
               </Col>
-              <Col>
+              <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
                 <FaPython size={60} style={{ color: "#ffc107" }} />
                 <h3 className="pt-3 pb-2">Backend</h3>
                 {!showStack ? (
@@ -314,7 +326,7 @@ const Home = () => {
                   </div>
                 )}
               </Col>
-              <Col>
+              <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
                 <FaAws size={60} style={{ color: "#ffc107" }} />
                 <h3 className="pt-3 pb-2">Cloud Platforms</h3>
                 {!showStack ? (
@@ -372,8 +384,8 @@ const HomeNav = ({
   showWork,
   setShowWork,
   showEdu,
-  // setShowEdu,
-}: HomeNavProps) => {
+}: // setShowEdu,
+HomeNavProps) => {
   return (
     <>
       <button

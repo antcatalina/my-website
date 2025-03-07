@@ -4,7 +4,7 @@ import resume from "../files/Catalina_Resume.pdf";
 
 export const Navigation = (): any => {
   return (
-    <nav className="navbar navigation navbar-expand-lg bg-body-tertiary navbar-dark">
+    <nav className="navbar navigation navbar-expand-lg bg-body-tertiary navbar-dark fixed-top">
       <div className="navigation container-fluid">
         <a className="navbar-brand" href="#">
           <img
