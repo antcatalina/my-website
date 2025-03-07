@@ -247,19 +247,19 @@ const Home = () => {
           </>
         ) : (
           <>
-            <div className="container p-5">
-              <div className="row align-items-center bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3 p-5">
+            <div className="container p-lg-5 p-4">
+              <div className="row align-items-center bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3 p-4 p-lg-5 p-sm-4 p-md-4">
                 {/* Image on top on small screens, right on large screens */}
                 <div className="col-lg-5 col-md-12 text-center order-md-1 order-lg-2">
                   <img
                     src={avatar}
-                    className="avatar img-fluid p-3"
+                    className="avatar img-fluid p-lg-3 p-md-3 p-2"
                     alt="Avatar"
                   />
                 </div>
 
                 {/* Text content on the bottom on small screens, left on large screens */}
-                <div className="col-lg-7 col-md-12 p-5 order-md-2 order-lg-1">
+                <div className="col-lg-7 col-md-12 p-sm-4 p-md-5 p-lg-5 order-md-2 order-lg-1">
                   <h4 className="pt-3 text-warning">Hi, my name is Anthony.</h4>
                   <h1 className="pt-3">
                     I am a Software Engineer from the Denver area.
