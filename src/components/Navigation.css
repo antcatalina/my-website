@@ -4,7 +4,7 @@
     padding-bottom: 0px !important;
     width: 100%;
     z-index: 1020;
-    background-color: #140180;
+    background-color: var(--bs-primary-bg-subtle);
 }
 
 .navigation .container {

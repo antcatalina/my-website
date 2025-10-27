@@ -1,4 +1,3 @@
-import logo from "../images/Anthony Catalina-logos.jpg";
 import "./Navigation.css";
 import resume from "../files/Catalina_Resume.pdf";
 
@@ -6,13 +5,10 @@ export const Navigation = (): any => {
   return (
     <nav className="navbar navigation navbar-expand-lg bg-body-tertiary navbar-dark fixed-top">
       <div className="navigation container-fluid">
-        <a className="navbar-brand" href="#">
-          <img
-            src={logo}
-            alt="Anthony Catalina Logo"
-            width="232"
-            height="44.5"
-          />
+        <a className="navbar-brand" href="/">
+        <div className="p-2 text-primary-emphasis">
+          <b><i>Anthony Catalina</i></b>
+        </div>
         </a>
         <button
           className="navbar-toggler"

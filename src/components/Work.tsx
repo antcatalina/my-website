@@ -7,8 +7,8 @@ import regulus from "../images/regulus-logo.png";
 export const Work = (props: IHomeNavProps) => {
   return (
     <>
-      <div className="p-5 container bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3">
-        <div className="d-flex text-warning">
+      <div className="p-5 container info-container rounded-3">
+        <div className="d-flex text-primary">
           <h2>
             <FaBriefcase className="me-2" />{" "}
           </h2>
@@ -33,18 +33,23 @@ export const Work = (props: IHomeNavProps) => {
             </a>
           </b>
         </h4>
-        <div><i>Loveland, Colorado, USA</i></div>
+        <div>
+          <i>Loveland, Colorado, USA</i>
+        </div>
         <div>April 2025 - Present</div>
         <p className="pt-3">
           <ul>
             <li>
-              Maintain a large-scale TypeScript/LitElement monorepo utilizing MVC and atomic UI architecture
+              Maintain a large-scale TypeScript/LitElement monorepo utilizing
+              MVC and atomic UI architecture.
             </li>
             <li>
-              Implement and manage UI submodules for several projects, supporting water analysis displays.
+              Implement and manage UI submodules for several projects,
+              supporting water analysis displays.
             </li>
             <li>
-              Implemented custom ESLint rules and configurations, and developed Jest unit tests for UI components
+              Implemented custom ESLint rules and configurations, and developed
+              Jest unit tests for UI components.
             </li>
           </ul>
         </p>
@@ -64,7 +69,9 @@ export const Work = (props: IHomeNavProps) => {
             </a>
           </b>
         </h4>
-        <div><i>Montgomeryville, Pennsylvania, USA</i></div>
+        <div>
+          <i>Montgomeryville, Pennsylvania, USA</i>
+        </div>
         <div>September 2022 - April, 2025</div>
         <p className="pt-3">
           <ul>
@@ -99,7 +106,9 @@ export const Work = (props: IHomeNavProps) => {
             </a>
           </b>
         </h4>
-        <div><i>Egg Harbor Township, New Jersey, USA</i></div>
+        <div>
+          <i>Egg Harbor Township, New Jersey, USA</i>
+        </div>
         <div>June 2021 - September 2022</div>
         <p className="pt-3">
           <ul>

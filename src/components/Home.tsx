@@ -27,13 +27,13 @@ export const HomeNav = ({
   return (
     <>
       <button
-        className={`mt-4 btn btn-outline-warning ${!activeSection && "active"}`}
+        className={`mt-4 btn btn-outline-primary ${!activeSection && "active"}`}
         onClick={() => onNavClick(null)}
       >
         About
       </button>
       <button
-        className={`mt-4 ms-3 btn btn-outline-warning ${
+        className={`mt-4 ms-3 btn btn-outline-primary ${
           activeSection === "projects" && "active"
         }`}
         onClick={() => onNavClick("projects")}
@@ -41,7 +41,7 @@ export const HomeNav = ({
         Projects
       </button>
       <button
-        className={`mt-4 ms-3 btn btn-outline-warning ${
+        className={`mt-4 ms-3 btn btn-outline-primary ${
           activeSection === "work" && "active"
         }`}
         onClick={() => onNavClick("work")}

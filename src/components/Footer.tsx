@@ -11,11 +11,11 @@ interface IStackViewProps {
 export const Footer = (): ReactElement => {
   const [showStack, setShowStack] = useState<boolean>(false);
   return (
-    <div className="bottom-container text-center bg-dark-subtle text-dark-emphasis mt-3 pt-5 pb-4">
+    <div className="bottom-container border-top border-primary-subtle text-center bg-primary-subtle text-primary-emphasis mt-3 pt-5 pb-4">
       <Container>
         <Row>
           <Col xs={12} md={4} className="text-center">
-            <FaReact size={60} style={{ color: "#ffc107" }} />
+            <FaReact size={60} style={{ color: "#0d6efd" }} />
             <h3 className="pt-3 pb-2">Frontend</h3>
             {!showStack ? (
               <p className="px-3">
@@ -30,7 +30,7 @@ export const Footer = (): ReactElement => {
             )}
           </Col>
           <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
-            <FaPython size={60} style={{ color: "#ffc107" }} />
+            <FaPython size={60} style={{ color: "#0d6efd" }} />
             <h3 className="pt-3 pb-2">Backend</h3>
             {!showStack ? (
               <p className="px-3">
@@ -46,7 +46,7 @@ export const Footer = (): ReactElement => {
             )}
           </Col>
           <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
-            <FaAws size={60} style={{ color: "#ffc107" }} />
+            <FaAws size={60} style={{ color: "#0d6efd" }} />
             <h3 className="pt-3 pb-2">CI/CD</h3>
             {!showStack ? (
               <p className="px-3">
@@ -65,7 +65,7 @@ export const Footer = (): ReactElement => {
         <Row>
           <div className="d-flex justify-content-center">
             <button
-              className={`my-4 btn btn-warning ${showStack && "active"}`}
+              className={`my-4 btn btn-primary ${showStack && "active"}`}
               onClick={() => setShowStack(!showStack)}
             >
               Tech Stack
@@ -82,8 +82,25 @@ const StackView = ({ showStack, spec }: IStackViewProps) => {
   if (!showStack) return null;
 
   const stacks = {
-    front: ["React", "TypeScript", "JavaScript", "LitElement", "HTML", "CSS", "VS Code"],
-    back: ["Python", "Flask", "HTTP", "MQTT", "SQL", "Docker", "MySQL Workbench", "Postman"],
+    front: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "LitElement",
+      "HTML",
+      "CSS",
+      "VS Code",
+    ],
+    back: [
+      "Python",
+      "Flask",
+      "HTTP",
+      "MQTT",
+      "SQL",
+      "Docker",
+      "MySQL Workbench",
+      "Postman",
+    ],
     cloud: ["AWS", "GitHub", "Amazon S3", "Bitbucket", "Jenkins"],
   };
 

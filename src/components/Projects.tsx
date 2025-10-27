@@ -4,8 +4,8 @@ import { FaFolderOpen } from "react-icons/fa";
 export const Projects = (props: IHomeNavProps) => {
   return (
     <>
-      <div className="p-5 container bg-dark-subtle text-dark-emphasis border border-dark-subtle rounded-3">
-        <h2 className="text-warning">
+      <div className="p-5 container border rounded-3 info-container">
+        <h2 className="text-primary">
           <FaFolderOpen className="me-2" /> Projects
         </h2>
         <hr />
