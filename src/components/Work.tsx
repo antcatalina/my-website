@@ -40,7 +40,7 @@ export const Work = (props: IHomeNavProps) => {
         <p className="pt-3">
           <ul>
             <li>
-              Maintain a large-scale TypeScript/LitElement monorepo utilizing
+              Maintain a large-scale TypeScript + Lit monorepo utilizing
               MVC and atomic UI architecture.
             </li>
             <li>

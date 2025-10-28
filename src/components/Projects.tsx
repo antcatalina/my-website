@@ -14,7 +14,7 @@ export const Projects = (props: IHomeNavProps) => {
         </h5>
         <p>
           <i>
-            TypeScript, LitElement, React, HTML/SCSS, Jenkins, Bitbucket, MQTT,
+            TypeScript, Lit, React, HTML/SCSS, Jenkins, Bitbucket, MQTT,
             Jest
           </i>
         </p>
@@ -32,7 +32,7 @@ export const Projects = (props: IHomeNavProps) => {
           </b>
         </h5>
         <p>
-          <i>React.js, Python, Bootstrap, CSS, MySQL</i>
+          <i>React, Typescript, Javascript, Python, Bootstrap, CSS, SQL</i>
         </p>
         <p>
           Programmed web app to display distribution centers’ battery
@@ -48,7 +48,7 @@ export const Projects = (props: IHomeNavProps) => {
           </b>
         </h5>
         <p>
-          <i>React.js, Python, Bootstrap, CSS</i>
+          <i>React, Typescript, Javascript, Python, Bootstrap, CSS</i>
         </p>
         <p>
           Full stack development of web app for devices used by distribution

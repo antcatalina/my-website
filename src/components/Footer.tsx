@@ -19,9 +19,12 @@ export const Footer = (): ReactElement => {
             <h3 className="pt-3 pb-2">Frontend</h3>
             {!showStack ? (
               <p className="px-3">
-                Highly skilled in several frontend technologies, web scripting,
-                and UI Engineering. Led the development of multiple applications
-                currently deployed across Fortune 500 companies.
+                Highly skilled in frontend development, web scripting, and UI
+                engineering with deep expertise in managing complex, large-scale
+                UI monorepos using React, TypeScript, JavaScript, and Lit
+                frameworks. Led the design and delivery of multiple
+                enterprise-grade applications currently in production across
+                Fortune 500 companies.
               </p>
             ) : (
               <div>
@@ -50,10 +53,12 @@ export const Footer = (): ReactElement => {
             <h3 className="pt-3 pb-2">CI/CD</h3>
             {!showStack ? (
               <p className="px-3">
-                Experienced in cloud computing, leveraging GitHub Actions for
-                CI/CD automation to deploy and host React applications on Amazon
-                S3. Skilled in streamlining deployment pipelines for scalable
-                and efficient cloud-based solutions.
+                Skilled in streamlining deployment pipelines for scalable and
+                efficient CI/CD solutions. Leveraging GitHub Actions to deploy
+                and host React applications on Amazon S3, as well as
+                implementing automated Jenkins pipelines integrated with
+                Bitbucket to optimize firmware build, testing, and deployment
+                workflows.
               </p>
             ) : (
               <div>
