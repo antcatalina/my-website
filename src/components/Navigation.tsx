@@ -72,6 +72,15 @@ export const Navigation = (): ReactElement => {
                 LinkedIn
               </a>
             </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="https://www.github.com/antcatalina/"
+                target="_blank"
+              >
+                GitHub
+              </a>
+            </li>
 
             {/* === Theme Toggle Dropdown === */}
             <li className="pb-2 pb-lg-0 nav-item dropdown ms-2">
