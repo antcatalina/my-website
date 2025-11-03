@@ -3,8 +3,9 @@ import { FaBriefcase } from "react-icons/fa";
 import hach from "../images/hach.png";
 import psLogo from "../images/ps_symbol_tm.png";
 import regulus from "../images/regulus-logo.png";
+import { ReactElement } from "react";
 
-export const Work = (props: IHomeNavProps) => {
+export const Work = (props: IHomeNavProps): ReactElement => {
   return (
     <>
       <div className="p-5 container info-container rounded-3">
@@ -19,7 +20,12 @@ export const Work = (props: IHomeNavProps) => {
         <hr />
         <h4 className="pt-2">
           <a href="https://www.hach.com" target="_blank">
-            <img src={hach} alt="Avatar" width="40px" />
+            <img
+              src={hach}
+              alt="Avatar"
+              width="42px"
+              className="rounded-circle"
+            />
           </a>
           <b className="ms-3">
             Contract Firmware Engineer /
@@ -40,8 +46,8 @@ export const Work = (props: IHomeNavProps) => {
         <p className="pt-3">
           <ul>
             <li>
-              Maintain a large-scale TypeScript + Lit monorepo utilizing
-              MVC and atomic UI architecture.
+              Maintain a large-scale TypeScript + Lit monorepo utilizing MVC and
+              atomic UI architecture.
             </li>
             <li>
               Implement and manage UI submodules for several projects,
@@ -55,7 +61,7 @@ export const Work = (props: IHomeNavProps) => {
         </p>
         <h4 className="pt-2">
           <a href="https://phlsci.com" target="_blank">
-            <img src={psLogo} alt="Avatar" width="40px" />
+            <img src={psLogo} alt="Avatar" width="42px" />
           </a>
           <b className="ms-3">
             Software Engineer /
@@ -92,7 +98,12 @@ export const Work = (props: IHomeNavProps) => {
         </p>
         <h4 className="pt-3">
           <a href="https://regulus-group.com" target="_blank">
-            <img src={regulus} alt="Avatar" width="38px" />
+            <img
+              src={regulus}
+              alt="Avatar"
+              width="42px"
+              className="rounded-circle"
+            />
           </a>
           <b className="ms-3">
             Software Engineer /

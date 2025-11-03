@@ -1,12 +1,12 @@
 .top-container {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 5.625rem;
+    padding-bottom: 5.625rem;
     width: 100%;
 }
 
 .info-container {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--bs-primary-border-subtle);
+  border: 0.0625rem solid var(--bs-primary-border-subtle);
   background-color: var(--bs-primary-bg-subtle);
   color: var(--bs-primary-text-emphasis);
   line-height: 1.5;

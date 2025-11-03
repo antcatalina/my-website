@@ -1,7 +1,8 @@
 import { HomeNav, IHomeNavProps } from "./Home";
 import avatar from "../images/anthony.jpg";
+import { ReactElement } from "react";
 
-export const About = (props: IHomeNavProps) => {
+export const About = (props: IHomeNavProps): ReactElement => {
   return (
     <>
       <div className="container p-lg-5 p-4">

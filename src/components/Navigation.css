@@ -1,12 +1,26 @@
 .navigation {
     position: sticky;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
     width: 100%;
     z-index: 1020;
     background-color: var(--bs-primary-bg-subtle);
 }
 
 .navigation .container {
-    max-width: 100%; /* Make sure the container spans the full width */
+    max-width: 100%;
+}
+
+.navigation .nav-item.dropdown {
+  position: relative;
+}
+
+@media (max-width: 61.99875rem) {
+  .navigation .nav-item.dropdown .dropdown-menu {
+    position: absolute !important;
+    transform: none !important;
+    will-change: transform;
+    left: 0;
+    right: auto; 
+  }
 }

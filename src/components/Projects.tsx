@@ -1,10 +1,11 @@
+import { ReactElement } from "react";
 import { HomeNav, IHomeNavProps } from "./Home";
 import { FaFolderOpen } from "react-icons/fa";
 
-export const Projects = (props: IHomeNavProps) => {
+export const Projects = (props: IHomeNavProps): ReactElement => {
   return (
     <>
-      <div className="p-5 container border rounded-3 info-container">
+      <div className="p-5 container rounded-3 info-container">
         <h2 className="text-primary">
           <FaFolderOpen className="me-2" /> Projects
         </h2>
@@ -14,8 +15,7 @@ export const Projects = (props: IHomeNavProps) => {
         </h5>
         <p>
           <i>
-            TypeScript, Lit, React, HTML/SCSS, Jenkins, Bitbucket, MQTT,
-            Jest
+            TypeScript, Lit, React, HTML/SCSS, Jenkins, Bitbucket, MQTT, Jest
           </i>
         </p>
         <p>
