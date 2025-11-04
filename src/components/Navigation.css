@@ -23,4 +23,9 @@
     left: 0;
     right: auto; 
   }
+
+  .lang-dropdown {
+    max-height: 48vh;
+    overflow-y: auto;
+  }
 }
