@@ -1,7 +1,7 @@
-import { HomeNav, IHomeNavProps } from "./Home";
-import avatar from "../images/anthony.jpg";
-import { ReactElement } from "react";
-import { useLocale } from "../hooks/useLocale";
+import { HomeNav, IHomeNavProps } from './Home';
+import avatar from '../images/anthony.jpg';
+import { ReactElement } from 'react';
+import { useLocale } from '../hooks/useLocale';
 
 export const About = (props: IHomeNavProps): ReactElement => {
   const { strings: i18n } = useLocale();
@@ -10,10 +10,10 @@ export const About = (props: IHomeNavProps): ReactElement => {
       <div className="container p-lg-5 p-4">
         <div className="row align-items-center rounded-3 p-4 p-lg-5 p-sm-4 p-md-4 info-container">
           {/* Image on top on small screens, right on large screens */}
-          <div className="col-lg-5 col-md-12 text-center order-md-1 order-lg-2">
+          <div className="col-lg-5 col-md-12 text-center order-md-1 order-lg-2 img-fluid">
             <img
               src={avatar}
-              className="avatar img-fluid p-lg-3 p-md-3 p-2"
+              className="avatar img-fluid mt-3 p-lg-3 p-md-3 p-2"
               alt="Avatar"
             />
           </div>
