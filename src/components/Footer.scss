@@ -1,0 +1,317 @@
+/* Theme-aware CSS variables */
+:root[data-bs-theme='light'] {
+  --footer-text-primary: rgba(0, 0, 0, 0.9);
+  --footer-text-secondary: rgba(0, 0, 0, 0.7);
+  --footer-card-bg: rgba(255, 255, 255, 0.8);
+  --footer-card-border: rgba(0, 0, 0, 0.1);
+  --footer-icon-bg: rgba(0, 0, 0, 0.05);
+  --footer-item-bg: rgba(0, 0, 0, 0.05);
+  --footer-item-hover: rgba(0, 0, 0, 0.1);
+  --footer-shadow: rgba(0, 0, 0, 0.2);
+}
+
+:root[data-bs-theme='dark'] {
+  --footer-text-primary: rgba(255, 255, 255, 1);
+  --footer-text-secondary: rgba(255, 255, 255, 0.7);
+  --footer-card-bg: rgba(255, 255, 255, 0.05);
+  --footer-card-border: rgba(255, 255, 255, 0.1);
+  --footer-icon-bg: rgba(255, 255, 255, 0.05);
+  --footer-item-bg: rgba(255, 255, 255, 0.05);
+  --footer-item-hover: rgba(255, 255, 255, 0.1);
+  --footer-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Footer wrapper */
+.footer-wrapper {
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 2.75rem;
+}
+
+/* Grid layout for cards */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Footer cards with glassmorphism */
+.footer-card {
+  position: relative;
+  background: var(--footer-card-bg);
+  border: 1px solid var(--footer-card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.footer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.footer-card:hover::before {
+  transform: translateX(100%);
+}
+
+.footer-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.footer-card.hovered {
+  transform: translateY(-8px);
+  border-color: var(--footer-card-border);
+  box-shadow: 0 20px 60px var(--footer-shadow);
+}
+
+.footer-card.hovered .footer-card-glow {
+  opacity: 0.15;
+}
+
+.footer-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon styling */
+.footer-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  background: var(--footer-icon-bg);
+  border-radius: 20px;
+  border: 1px solid var(--footer-card-border);
+  transition: all 0.3s ease;
+}
+
+.footer-card:hover .footer-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  background: var(--footer-item-hover);
+  box-shadow: 0 10px 30px var(--footer-shadow);
+}
+
+.footer-icon {
+  font-size: 2.5rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-card:hover .footer-icon {
+  transform: scale(1.1);
+}
+
+/* Card title */
+.footer-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--footer-text-primary);
+}
+
+/* Card description */
+.footer-card-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--footer-text-secondary);
+  margin: 0;
+}
+
+/* Stack list */
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom scrollbar */
+.stack-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.stack-list::-webkit-scrollbar-track {
+  background: var(--footer-item-bg);
+  border-radius: 10px;
+}
+
+.stack-list::-webkit-scrollbar-thumb {
+  background: var(--footer-item-hover);
+  border-radius: 10px;
+}
+
+.stack-list::-webkit-scrollbar-thumb:hover {
+  background: var(--footer-card-border);
+}
+
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--footer-item-bg);
+  border: 1px solid var(--footer-card-border);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--footer-text-secondary);
+  animation: slideInLeft 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+}
+
+.stack-item:hover {
+  background: var(--footer-item-hover);
+  border-color: var(--footer-card-border);
+  transform: translateX(5px);
+  color: var(--footer-text-primary);
+}
+
+.stack-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #f5576c 100%);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+  flex-shrink: 0;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Footer button */
+.footer-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.footer-stack-button {
+  position: relative;
+  padding: 1rem 3rem;
+  background: var(--footer-card-bg);
+  border: 1px solid var(--footer-card-border);
+  border-radius: 16px;
+  color: var(--footer-text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(100, 126, 234, 0.3), rgba(245, 87, 108, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.footer-stack-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--footer-card-border);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+}
+
+.footer-stack-button:hover .footer-button-glow {
+  opacity: 1;
+}
+
+.footer-stack-button.active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(245, 87, 108, 0.4));
+  border-color: var(--footer-card-border);
+  box-shadow:
+    0 0 40px rgba(102, 126, 234, 0.5),
+    0 0 80px rgba(245, 87, 108, 0.3);
+  transform: scale(1.05);
+  color: var(--footer-text-primary);
+}
+
+.footer-stack-button.active .footer-button-glow {
+  opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .footer-icon {
+    font-size: 2rem;
+  }
+
+  .footer-card-title {
+    font-size: 1.3rem;
+  }
+
+  .footer-stack-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer-icon {
+    font-size: 1.75rem;
+  }
+}

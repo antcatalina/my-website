@@ -1,7 +1,7 @@
 import { useState, ReactElement } from 'react';
 import { FaReact, FaPython, FaAws } from 'react-icons/fa';
-import { Container, Row, Col } from 'reactstrap';
 import { useLocale } from '../hooks/useLocale';
+import './Footer.scss';
 
 /** Props for the StackView component specifying visibility and stack type */
 interface IStackViewProps {
@@ -15,56 +15,78 @@ export const Footer = (): ReactElement => {
 
   /** Tracks whether the tech stack details are visible, and provides a setter to toggle it */
   const [showStack, setShowStack] = useState<boolean>(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  const sections = [
+    {
+      id: 'front',
+      icon: FaReact,
+      title: i18n.FRONTEND,
+      description: i18n.FRONTEND_DESCRIPTION,
+      color: '#61dafb',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    },
+    {
+      id: 'back',
+      icon: FaPython,
+      title: i18n.BACKEND,
+      description: i18n.BACKEND_DESCRIPTION,
+      color: '#3776ab',
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    },
+    {
+      id: 'cloud',
+      icon: FaAws,
+      title: 'CI/CD',
+      description: i18n.CI_CD_DESCRIPTION,
+      color: '#ff9900',
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    },
+  ];
 
   return (
-    <div className="bottom-container border-top border-primary-subtle text-center bg-primary-subtle text-primary-emphasis mt-3 pt-5 pb-4">
-      <Container>
-        <Row>
-          <Col xs={12} md={4} className="text-center">
-            <FaReact size={60} style={{ color: '#0d6efd' }} />
-            <h3 className="pt-3 pb-2">{i18n.FRONTEND}</h3>
-            {!showStack ? (
-              <p className="px-3">{i18n.FRONTEND_DESCRIPTION}</p>
-            ) : (
-              <div>
-                <StackView showStack={showStack} spec="front" />
+    <div className="footer-wrapper">
+      <div className="footer-container">
+        <div className="footer-grid">
+          {sections.map((section) => {
+            const Icon = section.icon;
+            return (
+              <div
+                key={section.id}
+                className={`footer-card ${hoveredCard === section.id ? 'hovered' : ''}`}
+                onMouseEnter={() => setHoveredCard(section.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="footer-card-glow" style={{ background: section.gradient }}></div>
+                <div className="footer-card-content">
+                  <div className="footer-icon-wrapper">
+                    <Icon className="footer-icon" style={{ color: section.color }} />
+                  </div>
+                  <h3 className="footer-card-title">{section.title}</h3>
+                  {!showStack ? (
+                    <p className="footer-card-description">{section.description}</p>
+                  ) : (
+                    <StackView
+                      showStack={showStack}
+                      spec={section.id as 'front' | 'back' | 'cloud'}
+                    />
+                  )}
+                </div>
               </div>
-            )}
-          </Col>
-          <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
-            <FaPython size={60} style={{ color: '#0d6efd' }} />
-            <h3 className="pt-3 pb-2">{i18n.BACKEND}</h3>
-            {!showStack ? (
-              <p className="px-3">{i18n.BACKEND_DESCRIPTION}</p>
-            ) : (
-              <div>
-                <StackView showStack={showStack} spec="back" />
-              </div>
-            )}
-          </Col>
-          <Col xs={12} md={4} className="text-center mt-lg-0 mt-md-0 mt-4">
-            <FaAws size={60} style={{ color: '#0d6efd' }} />
-            <h3 className="pt-3 pb-2">CI/CD</h3>
-            {!showStack ? (
-              <p className="px-3">{i18n.CI_CD_DESCRIPTION}</p>
-            ) : (
-              <div>
-                <StackView showStack={showStack} spec="cloud" />
-              </div>
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <div className="d-flex justify-content-center">
-            <button
-              className={`my-4 btn btn-primary ${showStack && 'active'}`}
-              onClick={() => setShowStack(!showStack)}
-            >
-              {i18n.TECH_STACK}
-            </button>
-          </div>
-        </Row>
-      </Container>
+            );
+          })}
+        </div>
+
+        <div className="footer-button-wrapper">
+          <button
+            className={`footer-stack-button ${showStack ? 'active' : ''}`}
+            onClick={() => setShowStack(!showStack)}
+          >
+            <span className="footer-button-text">{i18n.TECH_STACK}</span>
+            <span className="footer-button-glow"></span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
@@ -80,9 +102,12 @@ const StackView = ({ showStack, spec }: IStackViewProps) => {
   };
 
   return (
-    <div className="text-center">
-      {stacks[spec].map((tech) => (
-        <div key={tech}>{tech}</div>
+    <div className="stack-list">
+      {stacks[spec].map((tech, index) => (
+        <div key={tech} className="stack-item" style={{ animationDelay: `${index * 0.05}s` }}>
+          <span className="stack-dot"></span>
+          {tech}
+        </div>
       ))}
     </div>
   );

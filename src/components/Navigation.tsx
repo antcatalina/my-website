@@ -1,4 +1,4 @@
-import './Navigation.css';
+import './Navigation.scss';
 import resume from '../files/Catalina_Resume.pdf';
 import { ReactElement, useEffect, useState } from 'react';
 import { useTheme, Theme } from '../hooks/useTheme';
@@ -26,6 +26,9 @@ export const Navigation = (): ReactElement => {
   const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(
     window.matchMedia('(prefers-color-scheme: dark)').matches
   );
+
+  /** State for mobile menu toggle */
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   /** Resolves the *effective* theme being shown on screen. */
   const resolvedTheme = theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : theme;
@@ -59,104 +62,101 @@ export const Navigation = (): ReactElement => {
   }, []);
 
   return (
-    <nav className="navbar navigation navbar-expand-lg bg-body-tertiary navbar-light fixed-top">
-      <div className="navigation container-fluid">
-        <a className="navbar-brand" href="/">
-          <div className="p-2 text-primary-emphasis">
-            <b>
-              <i>Anthony Catalina</i>
-            </b>
+    <nav className="navigation-wrapper">
+      <div className="navigation-container">
+        <div className="navigation-content">
+          {/* Brand/Logo */}
+          <a className="nav-brand" href="/">
+            <span className="nav-brand-text">Anthony Catalina</span>
+          </a>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation"
+          >
+            <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          {/* Navigation Links */}
+          <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <a className="nav-link" href="#" onClick={() => setMobileMenuOpen(false)}>
+              {i18n.HOME}
+            </a>
+            <a
+              className="nav-link"
+              href={resume}
+              target="_blank"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {i18n.RESUME}
+            </a>
+            <a
+              className="nav-link"
+              href="https://www.linkedin.com/in/anthony-catalina/"
+              target="_blank"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              LinkedIn
+            </a>
+            <a
+              className="nav-link"
+              href="https://www.github.com/antcatalina/"
+              target="_blank"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              GitHub
+            </a>
           </div>
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav ms-auto align-items-center">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                {i18n.HOME}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href={resume} target="_blank">
-                {i18n.RESUME}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                href="https://www.linkedin.com/in/anthony-catalina/"
-                target="_blank"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="https://www.github.com/antcatalina/" target="_blank">
-                GitHub
-              </a>
-            </li>
-
-            {/* === Theme Toggle Dropdown === */}
-            <li className="pb-1 pb-lg-0 nav-item dropdown">
-              <button
-                className="btn dropdown-toggle d-inline-flex align-items-center gap-2"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                title="Select theme"
-              >
-                {resolvedTheme === 'dark' ? <BsMoon /> : <BsBrightnessHigh />}
+          {/* Theme Toggle Dropdown */}
+          <div className="nav-dropdown-container">
+            <div className="nav-dropdown">
+              <button className="nav-dropdown-toggle" type="button" title="Select theme">
+                {resolvedTheme === 'dark' ? <BsMoon size={18} /> : <BsBrightnessHigh size={18} />}
               </button>
 
-              <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="nav-dropdown-menu">
                 {themes.map((t) => (
                   <li key={t}>
                     <button
-                      className={`dropdown-item${theme === t ? ' active' : ''}`}
-                      onClick={() => setTheme(t)}
+                      className={`nav-dropdown-item ${theme === t ? 'active' : ''}`}
+                      onClick={() => {
+                        setTheme(t);
+                        setMobileMenuOpen(false);
+                      }}
                     >
                       {t.charAt(0).toUpperCase() + t.slice(1)}
                     </button>
                   </li>
                 ))}
               </ul>
-            </li>
+            </div>
 
-            {/* === Language Dropdown === */}
-            <li className="pb-2 pb-lg-0 nav-item dropdown">
-              <button
-                className="btn dropdown-toggle d-flex align-items-center gap-2"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {/* Show current locale's flag */}
+            {/* Language Dropdown */}
+            <div className="nav-dropdown">
+              <button className="nav-dropdown-toggle" type="button" title="Select language">
                 <span className={`fi fi-${flagCodeMap[locale] || locale}`}></span>
               </button>
 
-              <ul className="dropdown-menu dropdown-menu-end bg-dark-subtle lang-dropdown">
+              <ul className="nav-dropdown-menu lang-dropdown">
                 {Object.entries(TARGET_LANGUAGES).map(([code]) => {
                   const flagCode = flagCodeMap[code] || code;
-
-                  // Construct the key for the translated language name
                   const langKey = `${code.toUpperCase()}_LANG` as keyof (typeof locales)[LocaleKey];
 
                   return (
                     <li key={code}>
                       <button
-                        className={`dropdown-item${locale === code ? ' active' : ''}`}
-                        onClick={() => setLocale(code as LocaleCode)}
+                        className={`nav-dropdown-item ${locale === code ? 'active' : ''}`}
+                        onClick={() => {
+                          setLocale(code as LocaleCode);
+                          setMobileMenuOpen(false);
+                        }}
                       >
                         <span className={`fi fi-${flagCode}`}></span>{' '}
                         {locales[locale]?.[langKey] || TARGET_LANGUAGES[code as LocaleCode]}
@@ -165,8 +165,8 @@ export const Navigation = (): ReactElement => {
                   );
                 })}
               </ul>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
