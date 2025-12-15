@@ -5,8 +5,8 @@
   "homepage": "https://antcatalina.github.io/react-gh-pages",
   "type": "module",
   "scripts": {
-    "prepare": "npm install husky --save-dev",
-    "predeploy": "npm run build",
+    "prepare": "pnpm install husky --save-dev",
+    "predeploy": "pnpm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
