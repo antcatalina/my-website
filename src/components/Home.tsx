@@ -96,7 +96,7 @@ const Home = (): ReactElement => {
       {/* Content */}
       <div className="content-wrapper">
         <Navigation />
-        <div className="container top-container px-5">
+        <div className="container top-container">
           <div className="section-transition">
             {activeSection === 'projects' ? (
               <Projects activeSection={activeSection} setActiveSection={setActiveSection} />

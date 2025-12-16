@@ -12,13 +12,13 @@ export const Work = (props: IHomeNavProps): ReactElement => {
   
   return (
     <>
-      <div className="p-5 container info-container rounded-3">
+      <div className="p-3 container info-container rounded-3">
         <div className="d-flex">
           <h2>
             <FaBriefcase className="me-2" />{' '}
           </h2>
           <h2>
-            <div className="ms-2 mt-1">{i18n.WORK_EXPERIENCE}</div>
+            <div className="ms-2 mt-1 primary-text">{i18n.WORK_EXPERIENCE}</div>
           </h2>
         </div>
         <hr />
@@ -26,7 +26,7 @@ export const Work = (props: IHomeNavProps): ReactElement => {
           <a href="https://www.hach.com" target="_blank">
             <img src={hach} alt="Avatar" width="42px" className="rounded-circle" />
           </a>
-          <b className="ms-3">
+          <b className="ms-3 primary-text">
             {i18n.CONTRACT_FIRMWARE_ENGINEER} /
             <a className="text-decoration-none" href="https://www.hach.com" target="_blank">
               {' '}
@@ -34,13 +34,13 @@ export const Work = (props: IHomeNavProps): ReactElement => {
             </a>
           </b>
         </h4>
-        <div>
+        <div className='tertiary-text'>
           <i>{i18n.LOVELAND_CO_USA}</i>
         </div>
-        <div>
+        <div className='tertiary-text'>
           {i18n.APRIL_2025} - {i18n.PRESENT}
         </div>
-        <p className="pt-3">
+        <p className="pt-3 secondary-text">
           <ul>
             <li>{i18n.HACH_EXPERIENCE_1}</li>
             <li>{i18n.HACH_EXPERIENCE_2}</li>
@@ -51,7 +51,7 @@ export const Work = (props: IHomeNavProps): ReactElement => {
           <a href="https://phlsci.com" target="_blank">
             <img src={psLogo} alt="Avatar" width="42px" />
           </a>
-          <b className="ms-3">
+          <b className="ms-3 primary-text">
             {i18n.SOFTWARE_ENGINEER} /
             <a className="text-decoration-none" href="https://www.phlsci.com" target="_blank">
               {' '}
@@ -59,13 +59,13 @@ export const Work = (props: IHomeNavProps): ReactElement => {
             </a>
           </b>
         </h4>
-        <div>
+        <div className='tertiary-text'>
           <i>{i18n.MONTGOMERYVILLE_PA_USA}</i>
         </div>
-        <div>
+        <div className='tertiary-text'>
           {i18n.SEPTEMBER_2022} - {i18n.APRIL_2025}
         </div>
-        <p className="pt-3">
+        <p className="pt-3 secondary-text">
           <ul>
             <li>{i18n.PHLSCI_EXPERIENCE_1}</li>
             <li>{i18n.PHLSCI_EXPERIENCE_2}</li>
@@ -76,7 +76,7 @@ export const Work = (props: IHomeNavProps): ReactElement => {
           <a href="https://regulus-group.com" target="_blank">
             <img src={regulus} alt="Avatar" width="42px" className="rounded-circle" />
           </a>
-          <b className="ms-3">
+          <b className="ms-3 primary-text">
             {i18n.SOFTWARE_ENGINEER} /
             <a className="text-decoration-none" href="https://regulus-group.com/" target="_blank">
               {' '}
@@ -84,13 +84,13 @@ export const Work = (props: IHomeNavProps): ReactElement => {
             </a>
           </b>
         </h4>
-        <div>
+        <div className='tertiary-text'>
           <i>{i18n.EGG_HARBOR_NJ_USA}</i>
         </div>
-        <div>
+        <div className='tertiary-text'>
           {i18n.JUNE_2021} - {i18n.SEPTEMBER_2022}
         </div>
-        <p className="pt-3">
+        <p className="pt-3 secondary-text">
           <ul>
             <li>{i18n.REGULUS_EXPERIENCE_1}</li>
             <li>{i18n.REGULUS_EXPERIENCE_2}</li>

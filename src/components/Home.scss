@@ -1,6 +1,29 @@
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 
+/* Theme-aware CSS variables */
+:root[data-bs-theme='light'] {
+  --home-bg-primary: #ecf4ff;
+  --home-bg-secondary: #ffffff;
+  --home-text-primary: rgb(3, 0, 34);
+  --home-text-secondary: rgb(6, 0, 63);
+  --home-text-tertiary: rgb(130, 117, 255);
+  --home-card-bg: rgba(230, 238, 255, 0.8);
+  --home-card-border: rgba(255, 0, 0, 0.1);
+  --home-shadow: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-bs-theme='dark'] {
+  --home-bg-primary: #0a0e27;
+  --home-bg-secondary: #1a1a2e;
+  --home-text-primary: rgb(208, 217, 255);
+  --home-text-secondary: rgb(230, 230, 230);
+  --home-text-tertiary: rgb(118, 116, 255);
+  --home-card-bg: rgba(255, 255, 255, 0.05);
+  --home-card-border: rgba(255, 255, 255, 0.1);
+  --home-shadow: rgba(0, 0, 0, 0.3);
+}
+
 .top-container {
   padding: 2rem;
   width: 100%;
@@ -25,29 +48,6 @@
   .avatar {
     width: 16rem;
   }
-}
-
-/* Theme-aware CSS variables */
-:root[data-bs-theme='light'] {
-  --home-bg-primary: #f5f7fa;
-  --home-bg-secondary: #ffffff;
-  --home-text-primary: rgb(3, 0, 34);
-  --home-text-secondary: rgb(6, 0, 63);
-  --home-text-tertiary: rgb(130, 117, 255);
-  --home-card-bg: rgba(255, 255, 255, 0.8);
-  --home-card-border: rgba(255, 0, 0, 0.1);
-  --home-shadow: rgba(0, 0, 0, 0.1);
-}
-
-:root[data-bs-theme='dark'] {
-  --home-bg-primary: #0a0e27;
-  --home-bg-secondary: #1a1a2e;
-  --home-text-primary: rgb(223, 223, 223);
-  --home-text-secondary: rgb(199, 199, 199);
-  --home-text-tertiary: rgb(100, 100, 100);
-  --home-card-bg: rgba(255, 255, 255, 0.05);
-  --home-card-border: rgba(255, 255, 255, 0.1);
-  --home-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Main wrapper */
@@ -79,7 +79,7 @@
 }
 
 :root[data-bs-theme='light'] .gradient-orb {
-  opacity: 0.15;
+  opacity: 0.3;
 }
 
 :root[data-bs-theme='dark'] .gradient-orb {
@@ -341,4 +341,16 @@
     0 8px 32px rgba(0, 0, 0, 0.3),
     0 0 60px rgba(100, 126, 234, 0.1);
   transition: all 0.3s ease;
+}
+
+.primary-text {
+  color: var(--home-text-primary)
+}
+
+.secondary-text {
+  color: var(--home-text-secondary)
+}
+
+.tertiary-text {
+  color: var(--home-text-tertiary)
 }
