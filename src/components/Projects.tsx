@@ -10,7 +10,7 @@ export const Projects = (props: IHomeNavProps): ReactElement => {
   return (
     <>
       <div className="p-5 container rounded-3 info-container">
-        <h2 className="text-primary">
+        <h2>
           <FaFolderOpen className="me-2" /> {i18n.PROJECTS}
         </h2>
         <hr />

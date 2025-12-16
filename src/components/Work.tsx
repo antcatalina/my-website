@@ -13,7 +13,7 @@ export const Work = (props: IHomeNavProps): ReactElement => {
   return (
     <>
       <div className="p-5 container info-container rounded-3">
-        <div className="d-flex text-primary">
+        <div className="d-flex">
           <h2>
             <FaBriefcase className="me-2" />{' '}
           </h2>

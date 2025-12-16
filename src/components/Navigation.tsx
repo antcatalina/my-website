@@ -30,6 +30,10 @@ export const Navigation = (): ReactElement => {
   /** State for mobile menu toggle */
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  /** State for mobile dropdown toggles */
+  const [mobileThemeOpen, setMobileThemeOpen] = useState<boolean>(false);
+  const [mobileLangOpen, setMobileLangOpen] = useState<boolean>(false);
+
   /** Resolves the *effective* theme being shown on screen. */
   const resolvedTheme = theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : theme;
 
@@ -60,6 +64,14 @@ export const Navigation = (): ReactElement => {
     mq.addEventListener('change', listener);
     return () => mq.removeEventListener('change', listener);
   }, []);
+
+  /** Close mobile dropdowns when mobile menu closes */
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      setMobileThemeOpen(false);
+      setMobileLangOpen(false);
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <nav className="navigation-wrapper">
@@ -112,59 +124,76 @@ export const Navigation = (): ReactElement => {
             >
               GitHub
             </a>
-          </div>
 
-          {/* Theme Toggle Dropdown */}
-          <div className="nav-dropdown-container">
-            <div className="nav-dropdown">
-              <button className="nav-dropdown-toggle" type="button" title="Select theme">
-                {resolvedTheme === 'dark' ? <BsMoon size={18} /> : <BsBrightnessHigh size={18} />}
-              </button>
+            {/* Theme Toggle Dropdown */}
+            <div className={`nav-dropdown-container ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+              <div className="nav-dropdown">
+                <button
+                  className="nav-dropdown-toggle"
+                  type="button"
+                  title="Select theme"
+                  onClick={() => setMobileThemeOpen(!mobileThemeOpen)}
+                >
+                  {resolvedTheme === 'dark' ? <BsMoon size={18} /> : <BsBrightnessHigh size={18} />}
+                </button>
 
-              <ul className="nav-dropdown-menu">
-                {themes.map((t) => (
-                  <li key={t}>
-                    <button
-                      className={`nav-dropdown-item ${theme === t ? 'active' : ''}`}
-                      onClick={() => {
-                        setTheme(t);
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      {t.charAt(0).toUpperCase() + t.slice(1)}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Language Dropdown */}
-            <div className="nav-dropdown">
-              <button className="nav-dropdown-toggle" type="button" title="Select language">
-                <span className={`fi fi-${flagCodeMap[locale] || locale}`}></span>
-              </button>
-
-              <ul className="nav-dropdown-menu lang-dropdown">
-                {Object.entries(TARGET_LANGUAGES).map(([code]) => {
-                  const flagCode = flagCodeMap[code] || code;
-                  const langKey = `${code.toUpperCase()}_LANG` as keyof (typeof locales)[LocaleKey];
-
-                  return (
-                    <li key={code}>
+                <ul
+                  className={`nav-dropdown-menu ${mobileThemeOpen ? 'mobile-dropdown-open' : ''}`}
+                >
+                  {themes.map((t) => (
+                    <li key={t}>
                       <button
-                        className={`nav-dropdown-item ${locale === code ? 'active' : ''}`}
+                        className={`nav-dropdown-item ${theme === t ? 'active' : ''}`}
                         onClick={() => {
-                          setLocale(code as LocaleCode);
+                          setTheme(t);
                           setMobileMenuOpen(false);
+                          setMobileThemeOpen(false);
                         }}
                       >
-                        <span className={`fi fi-${flagCode}`}></span>{' '}
-                        {locales[locale]?.[langKey] || TARGET_LANGUAGES[code as LocaleCode]}
+                        {t.charAt(0).toUpperCase() + t.slice(1)}
                       </button>
                     </li>
-                  );
-                })}
-              </ul>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Language Dropdown */}
+              <div className="nav-dropdown">
+                <button
+                  className="nav-dropdown-toggle"
+                  type="button"
+                  title="Select language"
+                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
+                >
+                  <span className={`fi fi-${flagCodeMap[locale] || locale}`}></span>
+                </button>
+
+                <ul
+                  className={`nav-dropdown-menu lang-dropdown ${mobileLangOpen ? 'mobile-dropdown-open' : ''}`}
+                >
+                  {Object.entries(TARGET_LANGUAGES).map(([code]) => {
+                    const flagCode = flagCodeMap[code] || code;
+                    const langKey =
+                      `${code.toUpperCase()}_LANG` as keyof (typeof locales)[LocaleKey];
+
+                    return (
+                      <li key={code}>
+                        <button
+                          className={`nav-dropdown-item ${locale === code ? 'active' : ''}`}
+                          onClick={() => {
+                            setLocale(code as LocaleCode);
+                            setMobileMenuOpen(false);
+                            setMobileLangOpen(false);
+                          }}
+                        >
+                          <span className={`fi fi-${flagCode}`}></span>{' '}
+                          {locales[locale]?.[langKey] || TARGET_LANGUAGES[code as LocaleCode]}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
