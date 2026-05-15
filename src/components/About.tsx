@@ -1,5 +1,5 @@
 import { HomeNav, IHomeNavProps } from './Home';
-import avatar from '../images/anthony.png';
+import avatar from '../images/anthony.jpg';
 import { ReactElement } from 'react';
 import { useLocale } from '../hooks/useLocale';
 
