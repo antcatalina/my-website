@@ -97,9 +97,6 @@ export const Navigation = (): ReactElement => {
 
           {/* Navigation Links */}
           <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a className="nav-link" href="#" onClick={() => setMobileMenuOpen(false)}>
-              {i18n.HOME}
-            </a>
             <a
               className="nav-link"
               href={resume}

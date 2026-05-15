@@ -1,27 +1,16 @@
-import { HomeNav, IHomeNavProps } from './Home';
-import { FaBriefcase } from 'react-icons/fa';
 import hach from '../images/hach.png';
 import psLogo from '../images/ps_symbol_tm.png';
 import regulus from '../images/regulus-logo.png';
 import { ReactElement } from 'react';
 import { useLocale } from '../hooks/useLocale';
 
-export const Work = (props: IHomeNavProps): ReactElement => {
+export const Work = (): ReactElement => {
   /** Get localized strings for the current language from the locale context. */
   const { strings: i18n } = useLocale();
   
   return (
     <>
-      <div className="p-3 container info-container rounded-3">
-        <div className="d-flex">
-          <h2>
-            <FaBriefcase className="me-2" />{' '}
-          </h2>
-          <h2>
-            <div className="ms-2 mt-1 primary-text">{i18n.WORK_EXPERIENCE}</div>
-          </h2>
-        </div>
-        <hr />
+      <div className="px-5 py-4 container info-container rounded-3">
         <h4 className="pt-2">
           <a href="https://www.hach.com" target="_blank">
             <img src={hach} alt="Avatar" width="42px" className="rounded-circle" />
@@ -97,7 +86,6 @@ export const Work = (props: IHomeNavProps): ReactElement => {
             <li>{i18n.REGULUS_EXPERIENCE_3}</li>
           </ul>
         </p>
-        <HomeNav {...props} />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Navigation } from './Navigation';
 import './Home.scss';
 import { Projects } from './Projects';
@@ -23,24 +23,21 @@ export const HomeNav = ({ activeSection, setActiveSection }: IHomeNavProps): Rea
   };
 
   return (
-    <div className="nav-buttons-container">
-      <button className={`nav-btn ${!activeSection && 'active'}`} onClick={() => onNavClick(null)}>
-        <span className="nav-btn-text">{i18n.ABOUT}</span>
-        <span className="nav-btn-glow"></span>
+    <div className="nav-tabs-container">
+      <button className={`nav-tab ${!activeSection && 'active'}`} onClick={() => onNavClick(null)}>
+        <span className="nav-tab-text">{i18n.ABOUT}</span>
       </button>
       <button
-        className={`nav-btn ${activeSection === 'projects' && 'active'}`}
+        className={`nav-tab ${activeSection === 'projects' && 'active'}`}
         onClick={() => onNavClick('projects')}
       >
-        <span className="nav-btn-text">{i18n.PROJECTS}</span>
-        <span className="nav-btn-glow"></span>
+        <span className="nav-tab-text">{i18n.PROJECTS}</span>
       </button>
       <button
-        className={`nav-btn ${activeSection === 'work' && 'active'}`}
+        className={`nav-tab ${activeSection === 'work' && 'active'}`}
         onClick={() => onNavClick('work')}
       >
-        <span className="nav-btn-text">{i18n.EXPERIENCE}</span>
-        <span className="nav-btn-glow"></span>
+        <span className="nav-tab-text">{i18n.EXPERIENCE}</span>
       </button>
     </div>
   );
@@ -49,16 +46,6 @@ export const HomeNav = ({ activeSection, setActiveSection }: IHomeNavProps): Rea
 const Home = (): ReactElement => {
   /** Tracks the currently active section in the navigation (projects, work, or none) */
   const [activeSection, setActiveSection] = useState<'projects' | 'work' | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
     <div className="home-wrapper">
@@ -85,26 +72,23 @@ const Home = (): ReactElement => {
       </div>
 
       {/* Mouse follower glow */}
-      <div
-        className="mouse-glow"
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`,
-        }}
-      ></div>
+      <div className="mouse-glow" style={{ display: 'none' }}></div>
 
       {/* Content */}
       <div className="content-wrapper">
         <Navigation />
-        <div className="container top-container">
-          <div className="section-transition">
-            {activeSection === 'projects' ? (
-              <Projects activeSection={activeSection} setActiveSection={setActiveSection} />
-            ) : activeSection === 'work' ? (
-              <Work activeSection={activeSection} setActiveSection={setActiveSection} />
-            ) : (
-              <About activeSection={activeSection} setActiveSection={setActiveSection} />
-            )}
+        <div className="container-with-tabs">
+          <HomeNav activeSection={activeSection} setActiveSection={setActiveSection} />
+          <div className="top-container">
+            <div className="section-transition">
+              {activeSection === 'projects' ? (
+                <Projects />
+              ) : activeSection === 'work' ? (
+                <Work />
+              ) : (
+                <About />
+              )}
+            </div>
           </div>
         </div>
         <div className="container main-container">

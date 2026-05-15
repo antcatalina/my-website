@@ -29,7 +29,7 @@
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 2.75rem;
+  padding-bottom: 1rem;
 }
 
 /* Grid layout for cards */
@@ -90,6 +90,16 @@
 
 .footer-card.hovered .footer-card-glow {
   opacity: 0.15;
+}
+
+.footer-card.expanded {
+  transform: scale(1.02);
+  border-color: var(--footer-card-border);
+  box-shadow: 0 20px 60px var(--footer-shadow);
+}
+
+.footer-card.expanded .footer-card-glow {
+  opacity: 0.2;
 }
 
 .footer-card-content {
@@ -211,70 +221,6 @@
   }
 }
 
-/* Footer button */
-.footer-button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-}
-
-.footer-stack-button {
-  position: relative;
-  padding: 1rem 3rem;
-  background: var(--footer-card-bg);
-  border: 1px solid var(--footer-card-border);
-  border-radius: 16px;
-  color: var(--footer-text-primary);
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.footer-button-text {
-  position: relative;
-  z-index: 2;
-}
-
-.footer-button-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(100, 126, 234, 0.3), rgba(245, 87, 108, 0.3));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.footer-stack-button:hover {
-  transform: translateY(-3px);
-  border-color: var(--footer-card-border);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
-}
-
-.footer-stack-button:hover .footer-button-glow {
-  opacity: 1;
-}
-
-.footer-stack-button.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(245, 87, 108, 0.4));
-  border-color: var(--footer-card-border);
-  box-shadow:
-    0 0 40px rgba(102, 126, 234, 0.5),
-    0 0 80px rgba(245, 87, 108, 0.3);
-  transform: scale(1.05);
-  color: var(--footer-text-primary);
-}
-
-.footer-stack-button.active .footer-button-glow {
-  opacity: 1;
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .footer-grid {
@@ -297,11 +243,6 @@
 
   .footer-card-title {
     font-size: 1.3rem;
-  }
-
-  .footer-stack-button {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
   }
 }
 
