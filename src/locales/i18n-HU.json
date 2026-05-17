@@ -1,8 +1,8 @@
 {
   "ABOUT": "Körülbelül",
-  "ABOUT_HEADLINE": "Szakterületem a webfejlesztés, skálázható és nagy teljesítményű termékek zökkenőmentes felhasználói élményt nyújtó létrehozása.",
+  "ABOUT_HEADLINE": "UI-fejlesztésre specializálódtam, méretezhető és nagy teljesítményű termékeket építve zökkenőmentes felhasználói élménnyel.",
   "ABOUT_ME": "Rólam",
-  "ABOUT_SUPPORTING_TEXT": "Több mint négy éves szakmai tapasztalattal hozzájárulok megbízható és hatékony szoftvermegoldások kiépítéséhez. Munkám a Fortune 500-as cégek által használt alkalmazásokhoz kapcsolódik, amelyek biztosítják a teljesítményt, a méretezhetőséget és a karbantarthatóságot.",
+  "ABOUT_SUPPORTING_TEXT": "Több mint négy év szakmai tapasztalattal megbízható és hatékony szoftvermegoldások kiépítéséhez járulok hozzá. Munkám Fortune 500-as vállalatok által használt alkalmazásokat támaszt alá, biztosítva a teljesítményt, a skálázhatóságot és a karbantarthatóságot.",
   "APRIL_2025": "2025. április",
   "AR_LANG": "arab",
   "BACKEND": "Háttérrendszer",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Vízelemzés UI",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Az Atomic UI és a Modular MVC architektúra segítségével skálázható, moduláris UI komponensek implementálása a valós idejű vízelemzés és mérési vizualizáció támogatására belső mérnökök, labortechnikusok és ügyfelek számára.",
   "WORK_EXPERIENCE": "Munkatapasztalat",
-  "ZH_LANG": "kínai"
+  "ZH_LANG": "kínai",
+  "EN_GB_LANG": "English (UK)"
 }

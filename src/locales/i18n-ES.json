@@ -1,8 +1,8 @@
 {
   "ABOUT": "Acerca de",
-  "ABOUT_HEADLINE": "Me especializo en desarrollo web, creando productos escalables y de alto rendimiento con experiencias de usuario perfectas.",
+  "ABOUT_HEADLINE": "Me especializo en desarrollo de UI, creando productos escalables y de alto rendimiento con experiencias de usuario fluidas.",
   "ABOUT_ME": "Acerca de mí",
-  "ABOUT_SUPPORTING_TEXT": "Con más de cuatro años de experiencia profesional, contribuyo a construir soluciones de software confiables y eficientes. Mi trabajo ha impulsado aplicaciones utilizadas por empresas Fortune 500, garantizando rendimiento, escalabilidad y mantenibilidad.",
+  "ABOUT_SUPPORTING_TEXT": "Con más de cuatro años de experiencia profesional, contribuyo a construir soluciones de software confiables y eficientes. Mi trabajo ha impulsado aplicaciones utilizadas por empresas Fortune 500, garantizando rendimiento, escalabilidad y facilidad de mantenimiento.",
   "APRIL_2025": "abril 2025",
   "AR_LANG": "árabe",
   "BACKEND": "backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Interfaz de usuario de análisis de agua",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Implementé componentes de interfaz de usuario modulares y escalables utilizando la arquitectura Atomic UI y Modular MVC para respaldar el análisis de agua y la visualización de mediciones en tiempo real para ingenieros internos, técnicos de laboratorio y clientes.",
   "WORK_EXPERIENCE": "Experiencia laboral",
-  "ZH_LANG": "Chino"
+  "ZH_LANG": "Chino",
+  "EN_GB_LANG": "English (UK)"
 }

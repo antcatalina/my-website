@@ -1,4 +1,5 @@
-import en from './i18n-EN.json';
+import enUS from './i18n-US.json';
+import enGB from './i18n-GB.json';
 import fr from './i18n-FR.json';
 import it from './i18n-IT.json';
 import es from './i18n-ES.json';
@@ -31,7 +32,8 @@ import zh from './i18n-ZH.json';
  * Map of ISO language codes to their JSON translation objects.
  */
 export const locales = {
-  en,
+  'en-us': enUS,
+  'en-gb': enGB,
   fr,
   it,
   es,
@@ -69,12 +71,14 @@ export type LocaleKey = keyof typeof locales;
 
 /** Map of ISO language codes to human-readable language names, prioritized for US/EU web audience */
 export const TARGET_LANGUAGES = {
-  en: 'English', // Default
-  es: 'Spanish', // Spain, US Hispanic users
+  'en-us': 'English (US)', // Default
+  'en-gb': 'English (UK)',
   de: 'German', // Germany, Austria, Switzerland
   fr: 'French', // France, Belgium, Switzerland
+  es: 'Spanish', // Spain, US Hispanic users
   it: 'Italian', // Italy, Switzerland
   nl: 'Dutch', // Netherlands, Belgium
+  pt: 'Portuguese', // Portugal, Brazil
   sv: 'Swedish', // Sweden
   no: 'Norwegian', // Norway
   da: 'Danish', // Denmark
@@ -82,7 +86,6 @@ export const TARGET_LANGUAGES = {
   pl: 'Polish', // Poland, EU
   ru: 'Russian', // Eastern Europe, EU immigrant communities
   uk: 'Ukrainian', // Eastern Europe, EU immigrant communities
-  pt: 'Portuguese', // Portugal
   el: 'Greek', // Greece, Cyprus
   hi: 'Hindi', // Indian diaspora
   ar: 'Arabic', // Middle East & North Africa diaspora

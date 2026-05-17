@@ -1,8 +1,8 @@
 {
   "ABOUT": "Hakkında",
-  "ABOUT_HEADLINE": "Sorunsuz kullanıcı deneyimlerine sahip ölçeklenebilir ve yüksek performanslı ürünler oluşturma ve web geliştirme konusunda uzmanım.",
+  "ABOUT_HEADLINE": "UI geliştirme konusunda uzmanlaşmış olup sorunsuz kullanıcı deneyimleriyle ölçeklenebilir ve yüksek performanslı ürünler inşa ediyorum.",
   "ABOUT_ME": "Hakkımda",
-  "ABOUT_SUPPORTING_TEXT": "Dört yılı aşkın profesyonel deneyimim ile güvenilir ve verimli yazılım çözümleri oluşturmaya katkıda bulunuyorum. Çalışmalarım, Fortune 500 şirketlerinin kullandığı uygulamaları güçlendirerek performans, ölçeklenebilirlik ve sürdürülebilirlik sağladı.",
+  "ABOUT_SUPPORTING_TEXT": "Dört yılı aşkın profesyonel deneyimimle güvenilir ve verimli yazılım çözümleri oluşturmaya katkıda bulunuyorum. Çalışmalarım Fortune 500 şirketlerinin kullandığı uygulamaları destekleyerek performans, ölçeklenebilirlik ve sürdürülebilirlik sağlamıştır.",
   "APRIL_2025": "Nisan 2025",
   "AR_LANG": "Arapça",
   "BACKEND": "Arka uç",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Su Analizi Kullanıcı Arayüzü",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Dahili mühendisler, laboratuvar teknisyenleri ve müşteriler için gerçek zamanlı su analizini ve ölçüm görselleştirmesini desteklemek amacıyla Atomic UI ve Modüler MVC mimarisini kullanarak ölçeklenebilir, modüler UI bileşenleri uygulandı.",
   "WORK_EXPERIENCE": "İş Deneyimi",
-  "ZH_LANG": "Çince"
+  "ZH_LANG": "Çince",
+  "EN_GB_LANG": "English (UK)"
 }

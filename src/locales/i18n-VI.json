@@ -1,8 +1,8 @@
 {
   "ABOUT": "Về",
-  "ABOUT_HEADLINE": "Tôi chuyên phát triển web, xây dựng các sản phẩm có khả năng mở rộng và hiệu suất cao với trải nghiệm người dùng liền mạch.",
+  "ABOUT_HEADLINE": "Tôi chuyên phát triển UI, xây dựng các sản phẩm có khả năng mở rộng và hiệu suất cao với trải nghiệm người dùng liền mạch.",
   "ABOUT_ME": "Giới thiệu về tôi",
-  "ABOUT_SUPPORTING_TEXT": "Với hơn bốn năm kinh nghiệm chuyên môn, tôi góp phần xây dựng các giải pháp phần mềm đáng tin cậy và hiệu quả. Công việc của tôi đã hỗ trợ các ứng dụng được các công ty Fortune 500 sử dụng, đảm bảo hiệu suất, khả năng mở rộng và khả năng bảo trì.",
+  "ABOUT_SUPPORTING_TEXT": "Với hơn bốn năm kinh nghiệm chuyên nghiệp, tôi đóng góp vào việc xây dựng các giải pháp phần mềm đáng tin cậy và hiệu quả. Công việc của tôi đã hỗ trợ các ứng dụng được sử dụng bởi các công ty Fortune 500, đảm bảo hiệu suất, khả năng mở rộng và tính dễ bảo trì.",
   "APRIL_2025": "tháng 4 năm 2025",
   "AR_LANG": "tiếng Ả Rập",
   "BACKEND": "Phần phụ trợ",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Giao diện người dùng phân tích nước",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Triển khai các thành phần UI mô-đun, có thể mở rộng bằng cách sử dụng kiến ​​trúc Atomic UI và MVC mô-đun để hỗ trợ trực quan hóa phép đo và phân tích nước theo thời gian thực cho các kỹ sư nội bộ, kỹ thuật viên phòng thí nghiệm và khách hàng.",
   "WORK_EXPERIENCE": "Kinh nghiệm làm việc",
-  "ZH_LANG": "Tiếng Trung"
+  "ZH_LANG": "Tiếng Trung",
+  "EN_GB_LANG": "English (UK)"
 }

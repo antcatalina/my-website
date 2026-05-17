@@ -18,7 +18,7 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 /** Provides locale context to child components.*/
 export const LocaleProvider = ({ children }: LocaleProviderProps) => {
-  const [locale, setLocale] = useState<LocaleKey>("en");
+  const [locale, setLocale] = useState<LocaleKey>("en-us");
 
   const value: LocaleContextType = {
     locale,

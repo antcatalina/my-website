@@ -1,8 +1,8 @@
 {
   "ABOUT": "Noin",
-  "ABOUT_HEADLINE": "Olen erikoistunut verkkokehitykseen, skaalautuvien ja korkean suorituskyvyn tuotteiden rakentamiseen saumattomilla käyttökokemuksilla.",
+  "ABOUT_HEADLINE": "Olen erikoistunut käyttöliittymäkehitykseen ja rakennan skaalautuvia, korkean suorituskyvyn tuotteita saumattomilla käyttökokemuksilla.",
   "ABOUT_ME": "Tietoja minusta",
-  "ABOUT_SUPPORTING_TEXT": "Yli neljän vuoden ammattikokemuksella osallistun luotettavien ja tehokkaiden ohjelmistoratkaisujen rakentamiseen. Työni on tukenut Fortune 500 -yritysten käyttämiä sovelluksia, jotka varmistavat suorituskyvyn, skaalautuvuuden ja ylläpidettävyyden.",
+  "ABOUT_SUPPORTING_TEXT": "Yli neljän vuoden ammattikokemuksella osallistun luotettavien ja tehokkaiden ohjelmistoratkaisujen rakentamiseen. Työni on tukenut Fortune 500 -yritysten käyttämiä sovelluksia varmistaen suorituskyvyn, skaalautuvuuden ja ylläpidettävyyden.",
   "APRIL_2025": "Huhtikuu 2025",
   "AR_LANG": "arabia",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Vesianalyysin käyttöliittymä",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Toteutettu skaalattavat, modulaariset käyttöliittymäkomponentit käyttäen Atomic UI- ja Modular MVC -arkkitehtuuria tukemaan reaaliaikaista vesianalyysiä ja mittausten visualisointia sisäisille insinööreille, laboratorioteknikoille ja asiakkaille.",
   "WORK_EXPERIENCE": "Työkokemus",
-  "ZH_LANG": "kiinalainen"
+  "ZH_LANG": "kiinalainen",
+  "EN_GB_LANG": "English (UK)"
 }

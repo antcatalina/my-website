@@ -1,8 +1,8 @@
 {
-  "ABOUT": "Di",
-  "ABOUT_HEADLINE": "Sono specializzato nello sviluppo web, creando prodotti scalabili e ad alte prestazioni con esperienze utente senza soluzione di continuità.",
+  "ABOUT": "Su di me",
+  "ABOUT_HEADLINE": "Sono specializzato nello sviluppo di interfacce utente, creando prodotti scalabili e ad alte prestazioni con esperienze utente senza interruzioni.",
   "ABOUT_ME": "Su di me",
-  "ABOUT_SUPPORTING_TEXT": "Con oltre quattro anni di esperienza professionale, contribuisco alla realizzazione di soluzioni software affidabili ed efficienti. Il mio lavoro ha alimentato le applicazioni utilizzate dalle aziende Fortune 500, garantendo prestazioni, scalabilità e manutenibilità.",
+  "ABOUT_SUPPORTING_TEXT": "Con oltre quattro anni di esperienza professionale, contribuisco alla creazione di soluzioni software affidabili ed efficienti. Il mio lavoro ha supportato applicazioni utilizzate da aziende Fortune 500, garantendo prestazioni, scalabilità e manutenibilità.",
   "APRIL_2025": "aprile 2025",
   "AR_LANG": "arabo",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Interfaccia utente per l'analisi dell'acqua",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Implementazione di componenti dell'interfaccia utente scalabili e modulari utilizzando l'interfaccia utente atomica e l'architettura modulare MVC per supportare l'analisi dell'acqua in tempo reale e la visualizzazione delle misurazioni per ingegneri interni, tecnici di laboratorio e clienti.",
   "WORK_EXPERIENCE": "Esperienza di lavoro",
-  "ZH_LANG": "cinese"
+  "ZH_LANG": "cinese",
+  "EN_GB_LANG": "English (UK)"
 }

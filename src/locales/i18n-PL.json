@@ -1,8 +1,8 @@
 {
   "ABOUT": "O",
-  "ABOUT_HEADLINE": "Specjalizuję się w tworzeniu stron internetowych, budowaniu skalowalnych i wydajnych produktów zapewniających płynne doświadczenia użytkownika.",
+  "ABOUT_HEADLINE": "Specjalizuję się w tworzeniu interfejsów użytkownika, budując skalowalne i wydajne produkty z płynnymi doświadczeniami użytkownika.",
   "ABOUT_ME": "O mnie",
-  "ABOUT_SUPPORTING_TEXT": "Dzięki ponad czteroletniemu doświadczeniu zawodowemu przyczyniam się do budowania niezawodnych i wydajnych rozwiązań programowych. Moja praca zasilała aplikacje używane przez firmy z listy Fortune 500, zapewniając wydajność, skalowalność i łatwość konserwacji.",
+  "ABOUT_SUPPORTING_TEXT": "Dzięki ponad czteroletniemu doświadczeniu zawodowemu przyczyniłem się do budowania niezawodnych i wydajnych rozwiązań programowych. Moja praca napędzała aplikacje używane przez firmy z listy Fortune 500, zapewniając wydajność, skalowalność i łatwość utrzymania.",
   "APRIL_2025": "kwiecień 2025",
   "AR_LANG": "arabski",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Interfejs analizy wody",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Wdrożono skalowalne, modułowe komponenty interfejsu użytkownika wykorzystujące architekturę Atomic UI i Modular MVC w celu obsługi analizy wody w czasie rzeczywistym i wizualizacji pomiarów dla inżynierów wewnętrznych, techników laboratoryjnych i klientów.",
   "WORK_EXPERIENCE": "Doświadczenie zawodowe",
-  "ZH_LANG": "chiński"
+  "ZH_LANG": "chiński",
+  "EN_GB_LANG": "English (UK)"
 }

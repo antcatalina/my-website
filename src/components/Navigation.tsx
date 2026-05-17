@@ -43,7 +43,8 @@ export const Navigation = (): ReactElement => {
    * We override them here so the correct flag is displayed
    */
   const flagCodeMap: Record<string, string> = {
-    en: 'us',
+    'en-us': 'us',
+    'en-gb': 'gb',
     ar: 'sa',
     vi: 'vn',
     ko: 'kr',

@@ -1,8 +1,8 @@
 {
   "ABOUT": "O",
-  "ABOUT_HEADLINE": "Specializuji se na vývoj webových aplikací, vytváření škálovatelných a vysoce výkonných produktů s bezproblémovou uživatelskou zkušeností.",
+  "ABOUT_HEADLINE": "Specializuji se na vývoj uživatelského rozhraní, vytváření škálovatelných a vysoce výkonných produktů s plynulou uživatelskou zkušeností.",
   "ABOUT_ME": "O mně",
-  "ABOUT_SUPPORTING_TEXT": "S více než čtyřletými odbornými zkušenostmi přispívám k budování spolehlivých a efektivních softwarových řešení. Moje práce pohání aplikace používané společnostmi z žebříčku Fortune 500, zajišťující výkon, škálovatelnost a udržovatelnost.",
+  "ABOUT_SUPPORTING_TEXT": "S více než čtyřletými odbornými zkušenostmi přispívám k budování spolehlivých a efektivních softwarových řešení. Moje práce poháněla aplikace používané společnostmi Fortune 500 a zajišťovala výkon, škálovatelnost a snadnou údržbu.",
   "APRIL_2025": "dubna 2025",
   "AR_LANG": "arabština",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Analýza vody UI",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Implementované škálovatelné modulární komponenty uživatelského rozhraní využívající architekturu Atomic UI a modulární MVC pro podporu analýzy vody a vizualizace měření v reálném čase pro interní inženýry, laboratorní techniky a klienty.",
   "WORK_EXPERIENCE": "Pracovní zkušenosti",
-  "ZH_LANG": "čínština"
+  "ZH_LANG": "čínština",
+  "EN_GB_LANG": "English (UK)"
 }

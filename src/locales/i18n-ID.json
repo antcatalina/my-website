@@ -1,8 +1,8 @@
 {
   "ABOUT": "Tentang",
-  "ABOUT_HEADLINE": "Saya berspesialisasi dalam pengembangan web, membuat produk yang skalabel dan berkinerja tinggi dengan pengalaman pengguna yang lancar.",
+  "ABOUT_HEADLINE": "Saya berspesialisasi dalam pengembangan UI, membangun produk yang skalabel dan berperforma tinggi dengan pengalaman pengguna yang mulus.",
   "ABOUT_ME": "Tentang Saya",
-  "ABOUT_SUPPORTING_TEXT": "Dengan pengalaman profesional lebih dari empat tahun, saya berkontribusi dalam membangun solusi perangkat lunak yang andal dan efisien. Pekerjaan saya telah mendukung aplikasi yang digunakan oleh perusahaan-perusahaan Fortune 500, memastikan kinerja, skalabilitas, dan pemeliharaan.",
+  "ABOUT_SUPPORTING_TEXT": "Dengan pengalaman profesional lebih dari empat tahun, saya berkontribusi dalam membangun solusi perangkat lunak yang andal dan efisien. Pekerjaan saya telah mendukung aplikasi yang digunakan oleh perusahaan Fortune 500, memastikan kinerja, skalabilitas, dan kemudahan pemeliharaan.",
   "APRIL_2025": "April 2025",
   "AR_LANG": "Arab",
   "BACKEND": "Bagian belakang",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "UI Analisis Air",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Menerapkan komponen UI modular yang skalabel menggunakan arsitektur Atomic UI dan Modular MVC untuk mendukung analisis air real-time dan visualisasi pengukuran untuk teknisi internal, teknisi laboratorium, dan klien.",
   "WORK_EXPERIENCE": "Pengalaman Kerja",
-  "ZH_LANG": "Cina"
+  "ZH_LANG": "Cina",
+  "EN_GB_LANG": "English (UK)"
 }

@@ -1,8 +1,8 @@
 {
   "ABOUT": "关于",
-  "ABOUT_HEADLINE": "我专注于 Web 开发，构建具有无缝用户体验的可扩展、高性能产品。",
+  "ABOUT_HEADLINE": "我专注于UI开发，打造具有无缝用户体验的高性能、可扩展产品。",
   "ABOUT_ME": "关于我",
-  "ABOUT_SUPPORTING_TEXT": "凭借四年多的专业经验，我致力于构建可靠、高效的软件解决方案。我的工作为财富 500 强公司使用的应用程序提供支持，确保性能、可扩展性和可维护性。",
+  "ABOUT_SUPPORTING_TEXT": "凭借四年以上的专业经验，我致力于构建可靠、高效的软件解决方案。我的工作为多家财富500强企业的应用程序提供支持，确保了高性能、可扩展性和可维护性。",
   "APRIL_2025": "2025 年 4 月",
   "AR_LANG": "阿拉伯",
   "BACKEND": "后端",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "水分析用户界面",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "使用 Atomic UI 和模块化 MVC 架构实施可扩展的模块化 UI 组件，支持内部工程师、实验室技术人员和客户的实时水分析和测量可视化。",
   "WORK_EXPERIENCE": "工作经验",
-  "ZH_LANG": "中国人"
+  "ZH_LANG": "中国人",
+  "EN_GB_LANG": "English (UK)"
 }

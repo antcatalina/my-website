@@ -1,8 +1,8 @@
 {
   "ABOUT": "Om",
-  "ABOUT_HEADLINE": "Jeg er specialiseret i webudvikling, opbygning af skalerbare og højtydende produkter med problemfri brugeroplevelse.",
+  "ABOUT_HEADLINE": "Jeg er specialiseret i UI-udvikling og bygger skalerbare, højtydende produkter med problemfri brugeroplevelser.",
   "ABOUT_ME": "Om mig",
-  "ABOUT_SUPPORTING_TEXT": "Med over fire års erhvervserfaring bidrager jeg til at bygge pålidelige og effektive softwareløsninger. Mit arbejde har drevet applikationer brugt af Fortune 500-virksomheder, hvilket sikrer ydeevne, skalerbarhed og vedligeholdelse.",
+  "ABOUT_SUPPORTING_TEXT": "Med over fire års erhvervserfaring bidrager jeg til at opbygge pålidelige og effektive softwareløsninger. Mit arbejde har drevet applikationer, som bruges af Fortune 500-virksomheder, med fokus på ydeevne, skalerbarhed og vedligeholdelse.",
   "APRIL_2025": "april 2025",
   "AR_LANG": "arabisk",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Vandanalyse UI",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Implementeret skalerbare, modulære UI-komponenter ved hjælp af Atomic UI og Modular MVC-arkitektur til at understøtte real-time vandanalyse og målingsvisualisering for interne ingeniører, laboratorieteknikere og kunder.",
   "WORK_EXPERIENCE": "Erhvervserfaring",
-  "ZH_LANG": "kinesisk"
+  "ZH_LANG": "kinesisk",
+  "EN_GB_LANG": "English (UK)"
 }

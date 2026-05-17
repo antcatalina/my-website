@@ -1,8 +1,8 @@
 {
   "ABOUT": "Despre",
-  "ABOUT_HEADLINE": "Sunt specializat în dezvoltare web, construind produse scalabile și de înaltă performanță, cu experiențe de utilizator fără întreruperi.",
+  "ABOUT_HEADLINE": "Sunt specializat în dezvoltarea UI, construind produse scalabile și de înaltă performanță cu experiențe de utilizator fără întreruperi.",
   "ABOUT_ME": "Despre mine",
-  "ABOUT_SUPPORTING_TEXT": "Cu peste patru ani de experiență profesională, contribui la construirea de soluții software fiabile și eficiente. Munca mea a alimentat aplicațiile utilizate de companiile Fortune 500, asigurând performanță, scalabilitate și mentenanță.",
+  "ABOUT_SUPPORTING_TEXT": "Cu peste patru ani de experiență profesională, contribui la construirea de soluții software fiabile și eficiente. Munca mea a alimentat aplicații utilizate de companii Fortune 500, asigurând performanță, scalabilitate și ușurință în întreținere.",
   "APRIL_2025": "aprilie 2025",
   "AR_LANG": "arabic",
   "BACKEND": "Backend",
@@ -70,5 +70,6 @@
   "WATER_ANALYSIS_UI": "Interfața de utilizare pentru analiza apei",
   "WATER_ANALYSIS_UI_SUPPORTING_TEXT": "Implementarea componentelor UI modulare, scalabile, folosind arhitectura Atomic UI și Modular MVC pentru a sprijini analiza în timp real a apei și vizualizarea măsurătorilor pentru inginerii interni, tehnicienii de laborator și clienții.",
   "WORK_EXPERIENCE": "Experiență de muncă",
-  "ZH_LANG": "chinez"
+  "ZH_LANG": "chinez",
+  "EN_GB_LANG": "English (UK)"
 }
