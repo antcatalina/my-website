@@ -245,6 +245,12 @@
   margin-top: 10rem;
   margin-left: 4rem;
   margin-right: 4rem;
+
+  @media (max-width: 32rem) {
+    margin-top: 8rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }
 
 /* Container styles with glassmorphism */
@@ -262,8 +268,11 @@
 
 .main-container {
   position: relative;
-  max-width: 1200px;
-  margin: 3.75rem auto 0 auto;
+  margin: 3.75rem 4rem 0 4rem;
+
+  @media (max-width: 32rem) {
+    margin: 2.5rem 2rem 0 2rem;
+  }
 }
 
 /* Section transition animation */

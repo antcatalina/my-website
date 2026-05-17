@@ -91,7 +91,7 @@ const Home = (): ReactElement => {
             </div>
           </div>
         </div>
-        <div className="container main-container">
+        <div className="main-container">
           <Footer />
         </div>
       </div>
