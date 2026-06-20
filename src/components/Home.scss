@@ -339,6 +339,140 @@
   transition: all 0.3s ease;
 }
 
+/* Mobile: 4 tabs share available width evenly */
+@media (max-width: 560px) {
+  .nav-tabs-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .nav-tab {
+    flex: 1;
+    padding: 0.65rem 0.4rem;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .top-container {
+    border-radius: 0 0 24px 24px;
+  }
+}
+
+/* Contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--home-card-bg);
+    border: 1px solid var(--home-card-border);
+    border-radius: 0.5rem;
+    color: var(--home-text-secondary);
+    font-size: 0.9rem;
+    padding: 0.55rem 0.75rem;
+    transition: border-color 0.2s ease;
+    width: 100%;
+
+    &::placeholder {
+      color: var(--home-text-tertiary);
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--home-text-tertiary);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+
+  select option {
+    background: var(--home-bg-secondary);
+    color: var(--home-text-secondary);
+  }
+}
+
+.contact-btn-primary {
+  align-self: flex-start;
+  background: var(--home-text-tertiary);
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1.5rem;
+  transition: opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.contact-btn-outline {
+  background: transparent;
+  border: 1px solid var(--home-text-tertiary);
+  border-radius: 0.5rem;
+  color: var(--home-text-tertiary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.55rem 1.25rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--home-text-tertiary);
+    color: #fff;
+  }
+}
+
+.contact-error {
+  color: #e05c5c;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.contact-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
 .primary-text {
   color: var(--home-text-primary)
 }

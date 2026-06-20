@@ -1,5 +1,7 @@
 # Ignore node_modules
 /node_modules/
+lambda/**/node_modules/
+lambda/**/*.zip
 
 # Ignore the build folder
 /dist/

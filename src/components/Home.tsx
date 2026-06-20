@@ -4,13 +4,14 @@ import './Home.scss';
 import { Projects } from './Projects';
 import { Work } from './Work';
 import { About } from './About';
+import { Contact } from './Contact';
 import { Footer } from './Footer';
 import { useLocale } from '../hooks/useLocale';
 
 /** Props for the HomeNav component, controlling the active section and its setter */
 export interface IHomeNavProps {
-  activeSection: 'projects' | 'work' | null;
-  setActiveSection: React.Dispatch<React.SetStateAction<'projects' | 'work' | null>>;
+  activeSection: 'projects' | 'work' | 'contact' | null;
+  setActiveSection: React.Dispatch<React.SetStateAction<'projects' | 'work' | 'contact' | null>>;
 }
 
 export const HomeNav = ({ activeSection, setActiveSection }: IHomeNavProps): ReactElement => {
@@ -39,13 +40,19 @@ export const HomeNav = ({ activeSection, setActiveSection }: IHomeNavProps): Rea
       >
         <span className="nav-tab-text">{i18n.EXPERIENCE}</span>
       </button>
+      <button
+        className={`nav-tab ${activeSection === 'contact' && 'active'}`}
+        onClick={() => onNavClick('contact')}
+      >
+        <span className="nav-tab-text">{i18n.CONTACT}</span>
+      </button>
     </div>
   );
 };
 
 const Home = (): ReactElement => {
   /** Tracks the currently active section in the navigation (projects, work, or none) */
-  const [activeSection, setActiveSection] = useState<'projects' | 'work' | null>(null);
+  const [activeSection, setActiveSection] = useState<'projects' | 'work' | 'contact' | null>(null);
 
   return (
     <div className="home-wrapper">
@@ -85,6 +92,8 @@ const Home = (): ReactElement => {
                 <Projects />
               ) : activeSection === 'work' ? (
                 <Work />
+              ) : activeSection === 'contact' ? (
+                <Contact />
               ) : (
                 <About />
               )}

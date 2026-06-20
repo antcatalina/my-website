@@ -5,7 +5,7 @@ import { locales, LocaleKey } from "../locales";
 interface LocaleContextType {
   locale: LocaleKey;
   setLocale: (lang: LocaleKey) => void;
-  strings: typeof locales[LocaleKey];
+  strings: typeof locales['en-us'];
 }
 
 /** Props for the `LocaleProvider` component. */
@@ -23,7 +23,7 @@ export const LocaleProvider = ({ children }: LocaleProviderProps) => {
   const value: LocaleContextType = {
     locale,
     setLocale,
-    strings: locales[locale],
+    strings: locales[locale] as typeof locales['en-us'],
   };
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
