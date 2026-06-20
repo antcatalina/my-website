@@ -16,7 +16,7 @@ export const Work = (): ReactElement => {
             <img src={hach} alt="Avatar" width="42px" className="rounded-circle" />
           </a>
           <b className="ms-3 primary-text">
-            {i18n.CONTRACT_FIRMWARE_ENGINEER} /
+            {i18n.EMBEDDED_UI_ENGINEER} /
             <a className="text-decoration-none" href="https://www.hach.com" target="_blank">
               {' '}
               Hach Company
@@ -27,15 +27,18 @@ export const Work = (): ReactElement => {
           <i>{i18n.LOVELAND_CO_USA}</i>
         </div>
         <div className='tertiary-text'>
-          {i18n.APRIL_2025} - {i18n.PRESENT}
+          {i18n.JANUARY_2026} - {i18n.PRESENT}
         </div>
-        <p className="pt-3 secondary-text">
+        <div className='tertiary-text'>
+          <i>{i18n.HACH_PROMOTION_NOTE}</i>
+        </div>
+        <div className="pt-3 secondary-text">
           <ul>
             <li>{i18n.HACH_EXPERIENCE_1}</li>
             <li>{i18n.HACH_EXPERIENCE_2}</li>
             <li>{i18n.HACH_EXPERIENCE_3}</li>
           </ul>
-        </p>
+        </div>
         <h4 className="pt-2">
           <a href="https://phlsci.com" target="_blank">
             <img src={psLogo} alt="Avatar" width="42px" />
@@ -54,13 +57,13 @@ export const Work = (): ReactElement => {
         <div className='tertiary-text'>
           {i18n.SEPTEMBER_2022} - {i18n.APRIL_2025}
         </div>
-        <p className="pt-3 secondary-text">
+        <div className="pt-3 secondary-text">
           <ul>
             <li>{i18n.PHLSCI_EXPERIENCE_1}</li>
             <li>{i18n.PHLSCI_EXPERIENCE_2}</li>
             <li>{i18n.PHLSCI_EXPERIENCE_3}</li>
           </ul>
-        </p>
+        </div>
         <h4 className="pt-3">
           <a href="https://regulus-group.com" target="_blank">
             <img src={regulus} alt="Avatar" width="42px" className="rounded-circle" />
@@ -79,13 +82,13 @@ export const Work = (): ReactElement => {
         <div className='tertiary-text'>
           {i18n.JUNE_2021} - {i18n.SEPTEMBER_2022}
         </div>
-        <p className="pt-3 secondary-text">
+        <div className="pt-3 secondary-text">
           <ul>
             <li>{i18n.REGULUS_EXPERIENCE_1}</li>
             <li>{i18n.REGULUS_EXPERIENCE_2}</li>
             <li>{i18n.REGULUS_EXPERIENCE_3}</li>
           </ul>
-        </p>
+        </div>
       </div>
     </>
   );

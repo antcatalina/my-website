@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:PYTHONUTF8 = \"1\"; cd \"C:\\\\Users\\\\antca\\\\Documents\\\\Git\\\\my-website\\\\src\\\\locales\"; python translate.py)",
+      "Read(//c/Users/antca/AppData/Local/nvm/v24.16.0/**)",
+      "Read(//c/Users/antca/**)",
+      "PowerShell(corepack pnpm --version 2>$null)",
+      "PowerShell(npx --yes corepack pnpm --version 2>$null)",
+      "PowerShell(cd \"C:\\\\Users\\\\antca\\\\Documents\\\\Git\\\\my-website\"; $env:CI = \"true\"; corepack pnpm run deploy)",
+      "PowerShell(npm install -g pnpm)",
+      "PowerShell(pnpm --version)",
+      "PowerShell(Get-Process node, node.exe -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-WmiObject Win32_Process -Filter \"Name='node.exe'\")"
+    ]
+  }
+}

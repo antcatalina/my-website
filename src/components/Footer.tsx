@@ -87,7 +87,7 @@ export const Footer = (): ReactElement => {
 /** Displays a list of technologies for the given stack type */
 const StackView = ({ spec }: IStackViewProps) => {
   const stacks = {
-    front: ['React', 'TypeScript', 'JavaScript', 'LitElement', 'HTML', 'CSS', 'VS Code'],
+    front: ['React', 'TypeScript', 'JavaScript', 'Lit', 'HTML', 'CSS', 'VS Code'],
     back: ['Python', 'Flask', 'HTTP', 'MQTT', 'SQL', 'Docker', 'MySQL Workbench', 'Postman'],
     cloud: ['AWS', 'GitHub', 'Amazon S3', 'Bitbucket', 'Jenkins'],
   };

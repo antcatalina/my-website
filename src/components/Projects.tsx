@@ -8,6 +8,19 @@ export const Projects = (): ReactElement => {
   return (
     <>
       <div className="px-5 py-4 container rounded-3 info-container">
+        <h5 className="pt-2 primary-text">
+          <b>
+            <a className="text-decoration-none" href="https://passportiq.app" target="_blank">
+              PassportIQ
+            </a>{' '}
+            / {i18n.FULL_STACK_DEVELOPMENT} @ Mattermind
+          </b>
+        </h5>
+        <p className='tertiary-text'>
+          <i>React, TypeScript, FastAPI, Python, PostgreSQL, Stripe, Playwright</i>
+        </p>
+        <p className='secondary-text'>{i18n.PASSPORTIQ_SUPPORTING_TEXT}</p>
+        <hr />
         <h5 className="pt-2 primary-text primary-text">
           <b>
             {i18n.WATER_ANALYSIS_UI} / {i18n.FIRMWARE_UI_DEVELOPMENT} @ Hach Company

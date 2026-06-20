@@ -1,5 +1,4 @@
 import enUS from './i18n-US.json';
-import enGB from './i18n-GB.json';
 import fr from './i18n-FR.json';
 import it from './i18n-IT.json';
 import es from './i18n-ES.json';
@@ -33,7 +32,6 @@ import zh from './i18n-ZH.json';
  */
 export const locales = {
   'en-us': enUS,
-  'en-gb': enGB,
   fr,
   it,
   es,
@@ -72,7 +70,6 @@ export type LocaleKey = keyof typeof locales;
 /** Map of ISO language codes to human-readable language names, prioritized for US/EU web audience */
 export const TARGET_LANGUAGES = {
   'en-us': 'English (US)', // Default
-  'en-gb': 'English (UK)',
   de: 'German', // Germany, Austria, Switzerland
   fr: 'French', // France, Belgium, Switzerland
   es: 'Spanish', // Spain, US Hispanic users

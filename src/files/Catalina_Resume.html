@@ -1,0 +1,351 @@
+<!doctype html>
+<!--
+  Anthony Catalina — résumé source.
+  This HTML is the editable source of truth for Catalina_Resume.pdf.
+  To regenerate the PDF after editing, see render-resume.mjs (renders this
+  file to a single Letter page via headless Chromium / Playwright).
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Anthony Catalina — Résumé</title>
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --muted: #555;
+        --blue: #2e74b5;
+      }
+
+      @page {
+        size: Letter;
+        margin: 0.5in;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        color: var(--ink);
+        font-size: 11.25px;
+        line-height: 1.27;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      /* ---- Header ---- */
+      .name {
+        text-align: center;
+        font-size: 25px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        margin: 0;
+      }
+
+      .tagline {
+        text-align: center;
+        color: var(--blue);
+        font-size: 12.25px;
+        font-weight: 600;
+        margin: 3px 0 2px;
+      }
+
+      .contact {
+        text-align: center;
+        color: var(--muted);
+        font-size: 10.75px;
+        margin: 0 0 2px;
+      }
+
+      .contact a {
+        color: var(--muted);
+      }
+
+      /* ---- Section headings ---- */
+      .section {
+        color: var(--blue);
+        font-size: 12.25px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        border-bottom: 1.4px solid var(--blue);
+        padding-bottom: 1px;
+        margin: 7px 0 4px;
+      }
+
+      /* ---- Entries ---- */
+      .entry {
+        margin-bottom: 5px;
+      }
+
+      .entry-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .title {
+        font-weight: 700;
+      }
+
+      .company {
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      .date {
+        color: var(--muted);
+        font-style: italic;
+        white-space: nowrap;
+        padding-left: 12px;
+        font-size: 10.75px;
+      }
+
+      .note {
+        font-style: italic;
+        color: var(--muted);
+        margin: 1px 0 0;
+      }
+
+      ul {
+        margin: 2px 0 0;
+        padding-left: 16px;
+      }
+
+      li {
+        margin: 0 0 1px;
+      }
+
+      .skills p,
+      .summary p {
+        margin: 0 0 2px;
+      }
+
+      .label {
+        font-weight: 700;
+      }
+
+      .stack {
+        color: var(--muted);
+        margin: 1px 0 0;
+      }
+
+      .stack .label {
+        color: var(--ink);
+      }
+
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="name">ANTHONY CATALINA</h1>
+    <div class="tagline">
+      Full-Stack Engineer &middot; React &amp; TypeScript &middot; Real-Time UI &amp; Design Systems
+    </div>
+    <div class="contact">
+      Fort Collins, CO &middot; (609) 651-0935 &middot;
+      <a href="mailto:antcatalina1@gmail.com">antcatalina1@gmail.com</a> &middot;
+      <a href="https://antcatalina.com">antcatalina.com</a> &middot;
+      <a href="https://linkedin.com/in/anthony-catalina">linkedin.com/in/anthony-catalina</a>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">Summary</div>
+    <div class="summary">
+      <p>
+        Frontend engineer with 5+ years of experience delivering production React/TypeScript
+        applications at enterprise scale. Unique background spanning both embedded systems and modern
+        UI development; enabling end-to-end ownership from hardware data pipelines through polished,
+        performant interfaces. Strong track record building real-time dashboards, component libraries,
+        and design systems for Fortune 500 clients across IoT, industrial, and distribution industries.
+      </p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">Skills</div>
+    <div class="skills">
+      <p>
+        <span class="label">Frameworks &amp; Languages:</span> React, TypeScript, JavaScript, Lit,
+        HTML5, CSS3/SCSS, Bootstrap, Python
+      </p>
+      <p>
+        <span class="label">Architecture &amp; Patterns:</span> Atomic Design, Component-Driven
+        Development, MVC, Monorepo, Design Systems, REST APIs
+      </p>
+      <p><span class="label">Real-Time Data:</span> MQTT, WebSocket, Live data pipelines</p>
+      <p>
+        <span class="label">DevOps &amp; Tooling:</span> AWS S3, GitHub Actions CI/CD, Jenkins, Git,
+        Bitbucket, SureMDM
+      </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">Experience</div>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span class="title">Embedded UI Engineer &middot; <span class="company">Hach Company</span> — Loveland, CO &middot; Hybrid</span>
+        <span class="date">Jan 2026 – Present</span>
+      </div>
+      <div class="entry-row">
+        <span class="title">Contract Frontend Engineer</span>
+        <span class="date">Apr 2025 – Jan 2026</span>
+      </div>
+      <div class="note">
+        Promoted from Contract role; bridging embedded systems and frontend UI across multiple
+        enterprise product lines
+      </div>
+      <ul>
+        <li>
+          Lead frontend architecture for a large-scale TypeScript/Lit monorepo supporting multiple
+          water analysis product lines; established reusable Atomic UI component libraries and MVC
+          patterns adopted across concurrent product teams.
+        </li>
+        <li>
+          Engineer real-time device management interfaces integrating live MQTT and HTTP data
+          streams, delivering low-latency UI updates critical for lab and field instrumentation
+          workflows.
+        </li>
+        <li>
+          Define and enforce frontend engineering standards through custom ESLint rule sets and
+          comprehensive Jest unit test suites; manage UI submodule dependencies across product lines
+          to ensure stable, coordinated releases.
+        </li>
+        <li>
+          Act as the technical bridge between embedded firmware teams and UI — translating hardware
+          data pipelines into intuitive, responsive interfaces for engineers, lab technicians, and
+          enterprise clients.
+        </li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span class="title">Software Engineer &middot; <span class="company">Philadelphia Scientific, LLC</span> — Montgomeryville, PA</span>
+        <span class="date">Sept 2022 – Apr 2025</span>
+      </div>
+      <ul>
+        <li>
+          Led full-stack frontend development of multiple production web applications for Fortune 500
+          clients including Target, TJX, and Uline — independently owning the full lifecycle from
+          component design through AWS deployment.
+        </li>
+        <li>
+          Architected a real-time operations dashboard with interactive data visualizations and live
+          data feeds; built zero-downtime CI/CD pipeline via GitHub Actions with automated deployment
+          to AWS S3.
+        </li>
+        <li>
+          Built a touch-optimized React PWA for on-device battery maintenance with a Python/Flask REST
+          API backend; deployed and managed enterprise-wide across major national distribution centers
+          via SureMDM MDM.
+        </li>
+        <li>
+          Designed React/TypeScript component libraries with Bootstrap, enforcing consistent UX
+          patterns and accessibility across all client-facing products; provided ongoing production
+          support maintaining uptime for business-critical applications.
+        </li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span class="title">Software Engineer &middot; <span class="company">Regulus Group, LLC</span> — Atlantic City, NJ</span>
+        <span class="date">Jun 2021 – Sept 2022</span>
+      </div>
+      <ul>
+        <li>
+          Modernized data-input and analytical-output UIs for FAA Surveillance Branch operators,
+          upgrading legacy interfaces with improved usability and performance for mission-critical
+          government systems.
+        </li>
+        <li>
+          Developed real-time and historical system performance dashboards with dynamic data
+          visualizations; optimized SQL queries for high-volume, data-intensive analytical workloads.
+        </li>
+      </ul>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">Projects</div>
+
+    <div class="entry">
+      <div class="title">
+        <a href="https://passportiq.app">PassportIQ</a> &middot; Founder &amp; Full-Stack Engineer —
+        <span class="company">Mattermind</span> &middot;
+        <a href="https://passportiq.app">passportiq.app</a>
+      </div>
+      <ul>
+        <li>
+          Founded and shipped a multi-tenant SaaS platform that helps EU battery manufacturers meet
+          the 2027 EU Digital Product Passport regulation — owning product, full-stack engineering,
+          and deployment end to end.
+        </li>
+        <li>
+          Built a React/TypeScript app over a FastAPI/PostgreSQL backend with Stripe subscription
+          billing, GS1 Digital Link QR passports, fleet compliance dashboards, and CSV bulk import,
+          backed by a CI/CD pipeline and 244 automated tests (pytest + Playwright).
+        </li>
+      </ul>
+      <div class="stack">
+        <span class="label">Stack:</span> React &middot; TypeScript &middot; FastAPI &middot; Python
+        &middot; PostgreSQL &middot; Stripe &middot; Playwright &middot; Vercel &middot; Railway
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="title">Water Analysis Instrument UI &middot; <span class="company">Hach</span></div>
+      <ul>
+        <li>
+          Production UI serving engineers, lab technicians, and enterprise clients across multiple
+          water analysis product lines; fully modular Atomic UI component system built for reuse and
+          long-term maintainability.
+        </li>
+      </ul>
+      <div class="stack">
+        <span class="label">Stack:</span> TypeScript &middot; Lit &middot; React &middot; MQTT &middot;
+        Jest &middot; Atomic Design
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="title">
+        Battery Manager Operations Dashboard &middot; <span class="company">Philadelphia Scientific</span>
+      </div>
+      <ul>
+        <li>
+          Enterprise real-time ops dashboard with live data visualization and interactive charts;
+          fully automated AWS S3 + GitHub Actions deployment pipeline serving Fortune 500 distribution
+          center operators.
+        </li>
+      </ul>
+      <div class="stack">
+        <span class="label">Stack:</span> React &middot; TypeScript &middot; Python &middot; SQL
+        &middot; AWS S3 &middot; GitHub Actions
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">Education</div>
+    <div class="edu-row">
+      <span><span class="title">B.S. Computer Science</span> &middot; Rowan University, Glassboro, NJ</span>
+      <span class="date">December 2020</span>
+    </div>
+  </body>
+</html>

@@ -10,3 +10,7 @@
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Ignore claude files
+.claude
+.claude\settings.json
