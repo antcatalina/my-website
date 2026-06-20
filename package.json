@@ -2,7 +2,7 @@
   "name": "my-website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://antcatalina.github.io/react-gh-pages",
+  "homepage": "https://antcatalina.com",
   "type": "module",
   "scripts": {
     "prepare": "pnpm install husky --save-dev",

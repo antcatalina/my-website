@@ -10,7 +10,10 @@
       "PowerShell(npm install -g pnpm)",
       "PowerShell(pnpm --version)",
       "PowerShell(Get-Process node, node.exe -ErrorAction SilentlyContinue)",
-      "PowerShell(Get-WmiObject Win32_Process -Filter \"Name='node.exe'\")"
+      "PowerShell(Get-WmiObject Win32_Process -Filter \"Name='node.exe'\")",
+      "Bash(git ls-tree *)",
+      "Bash(git show *)",
+      "Bash(pnpm run *)"
     ]
   }
 }
