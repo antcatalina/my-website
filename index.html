@@ -1,9 +1,38 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark" class="bg-dark-subtle">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon-DqmMpypg.ico" />
+
+    <!--
+      Resolve the theme before the first paint. This is render-blocking on
+      purpose: it is a few microseconds of work, and without it a visitor who
+      chose light mode gets a full frame of dark background first.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored !== 'light' && stored !== 'dark') stored = 'system';
+          document.documentElement.dataset.theme =
+            stored === 'system'
+              ? matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : stored;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300..700&family=Space+Grotesk:wght@400..700&display=swap"
+    />
 
     <!-- Primary meta -->
     <title>Anthony Catalina – Full-Stack Software Engineer</title>
@@ -17,7 +46,8 @@
     />
     <meta name="author" content="Anthony Catalina" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#0d1117" />
+    <meta name="theme-color" content="#f9fafb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0e14" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://antcatalina.com/" />
 
     <!-- Open Graph (LinkedIn, Slack, Facebook) -->
@@ -88,8 +118,8 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-DzFmdhpO.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DNYag1mv.css">
+    <script type="module" crossorigin src="/assets/index-B-SyLQq5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bk2LHoVn.css">
   </head>
   <body>
     <div id="root"></div>
