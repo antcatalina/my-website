@@ -15,4 +15,7 @@ Thumbs.db
 
 # Ignore claude files
 .claude
-.claude\settings.json
+.claude/settings.json
+
+# Ignore scripts
+/src/locales/translate.py

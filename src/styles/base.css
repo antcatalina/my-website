@@ -1,0 +1,167 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background: var(--bg-void);
+    color: var(--ink-secondary);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Tabular figures everywhere. Dates and coordinates in an instrument
+       readout must not reflow as digits change. */
+    font-variant-numeric: tabular-nums;
+    transition:
+      background-color var(--dur-slow) var(--ease-out),
+      color var(--dur-slow) var(--ease-out);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    color: var(--ink-primary);
+    font-weight: 500;
+    line-height: 1.1;
+    /* Headings get balanced ragging, body copy gets orphan protection.
+       Both are one-line wins that most sites still don't ship. */
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  svg,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    text-underline-offset: 0.2em;
+    transition: color var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      color: var(--signal);
+      text-decoration-color: currentColor;
+    }
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+  }
+
+  /* One focus treatment for the whole site. Keyboard users get an unmissable
+     signal ring; pointer users never see it. */
+  /* `outline` already follows the element's own border-radius — setting a
+     radius here would reshape the element itself on focus. */
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  :target {
+    scroll-margin-top: calc(var(--nav-h) + var(--space-m));
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--signal) 30%, transparent);
+    color: var(--ink-primary);
+  }
+
+  /* Scrollbars styled to match the enclosure rather than the OS. */
+  @supports (scrollbar-width: thin) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--line-strong) transparent;
+    }
+  }
+
+  /* Skip link — visually hidden until focused. */
+  .skip-link {
+    position: absolute;
+    top: var(--space-2xs);
+    left: var(--space-2xs);
+    z-index: 100;
+    padding: var(--space-2xs) var(--space-s);
+    background: var(--bg-raised);
+    border: var(--hairline) solid var(--signal);
+    border-radius: var(--radius-md);
+    color: var(--ink-primary);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-decoration: none;
+    translate: 0 -200%;
+
+    &:focus-visible {
+      translate: 0 0;
+    }
+  }
+
+  /**
+   * Motion opt-out. Rather than hunting down individual animations, this
+   * collapses every transition and animation to a single frame — which keeps
+   * `animationend`/`transitionend` listeners firing so nothing gets stuck in a
+   * pending state. The canvas background reads the same media query in JS and
+   * renders one static frame.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+  }
+}

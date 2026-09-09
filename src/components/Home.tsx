@@ -1,110 +1,131 @@
-import React, { ReactElement, useState } from 'react';
+import { useCallback, useRef, useState, type KeyboardEvent, type ReactElement } from 'react';
 import { Navigation } from './Navigation';
-import './Home.scss';
+import { SignalField, type Signature } from './SignalField';
+import { Hero } from './Hero';
 import { Projects } from './Projects';
 import { Work } from './Work';
 import { About } from './About';
 import { Contact } from './Contact';
 import { Footer } from './Footer';
 import { useLocale } from '../hooks/useLocale';
+import { withViewTransition } from '../lib/viewTransition';
+import './Home.css';
 
-/** Props for the HomeNav component, controlling the active section and its setter */
-export interface IHomeNavProps {
-  activeSection: 'projects' | 'work' | 'contact' | null;
-  setActiveSection: React.Dispatch<React.SetStateAction<'projects' | 'work' | 'contact' | null>>;
-}
+const TABS = ['about', 'projects', 'work', 'contact'] as const;
+/* Deliberately the same union as `Signature` — the tab drives the waveform,
+   so a new section cannot be added without also tuning the background. */
+type TabId = Signature;
 
-export const HomeNav = ({ activeSection, setActiveSection }: IHomeNavProps): ReactElement => {
-  /** Get localized strings for the current language from the locale context. */
-  const { strings: i18n } = useLocale();
-
-  /** Sets the active section to the selected tab, or resets to null if the same tab is clicked again */
-  const onNavClick = (selectedTab: typeof activeSection) => {
-    setActiveSection((prev) => (prev === selectedTab ? null : selectedTab));
-  };
-
-  return (
-    <div className="nav-tabs-container">
-      <button className={`nav-tab ${!activeSection && 'active'}`} onClick={() => onNavClick(null)}>
-        <span className="nav-tab-text">{i18n.ABOUT}</span>
-      </button>
-      <button
-        className={`nav-tab ${activeSection === 'projects' && 'active'}`}
-        onClick={() => onNavClick('projects')}
-      >
-        <span className="nav-tab-text">{i18n.PROJECTS}</span>
-      </button>
-      <button
-        className={`nav-tab ${activeSection === 'work' && 'active'}`}
-        onClick={() => onNavClick('work')}
-      >
-        <span className="nav-tab-text">{i18n.EXPERIENCE}</span>
-      </button>
-      <button
-        className={`nav-tab ${activeSection === 'contact' && 'active'}`}
-        onClick={() => onNavClick('contact')}
-      >
-        <span className="nav-tab-text">{i18n.CONTACT}</span>
-      </button>
-    </div>
-  );
+const PANELS: Record<TabId, () => ReactElement> = {
+  about: About,
+  projects: Projects,
+  work: Work,
+  contact: Contact,
 };
 
 const Home = (): ReactElement => {
-  /** Tracks the currently active section in the navigation (projects, work, or none) */
-  const [activeSection, setActiveSection] = useState<'projects' | 'work' | 'contact' | null>(null);
+  const { strings: i18n } = useLocale();
+  const [active, setActive] = useState<TabId>('about');
+  const tablistRef = useRef<HTMLDivElement>(null);
+
+  const labels: Record<TabId, string> = {
+    about: i18n.ABOUT,
+    projects: i18n.PROJECTS,
+    work: i18n.EXPERIENCE,
+    contact: i18n.CONTACT,
+  };
+
+  /** The panel cross-fades and the channel indicator morphs from the old tab to the new one. */
+  const select = useCallback((next: TabId) => {
+    withViewTransition(() => setActive(next));
+  }, []);
+
+  /** Arrow-key roving, per the WAI-ARIA tabs pattern. */
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+
+      const index = TABS.indexOf(active);
+      const next =
+        event.key === 'Home'
+          ? 0
+          : event.key === 'End'
+            ? TABS.length - 1
+            : (index + (event.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length;
+
+      select(TABS[next]);
+      /* Follow focus to the newly selected tab, as the pattern requires. */
+      requestAnimationFrame(() => {
+        tablistRef.current?.querySelector<HTMLButtonElement>(`#tab-${TABS[next]}`)?.focus();
+      });
+    },
+    [active, select]
+  );
+
+  const Panel = PANELS[active];
 
   return (
-    <div className="home-wrapper">
-      {/* Animated gradient background */}
-      <div className="animated-bg">
-        <div className="gradient-orb gradient-orb-1"></div>
-        <div className="gradient-orb gradient-orb-2"></div>
-        <div className="gradient-orb gradient-orb-3"></div>
-      </div>
+    <>
+      <SignalField signature={active} />
+      <a className="skip-link" href="#panel">
+        Skip to content
+      </a>
+      <Navigation />
 
-      {/* Floating particles */}
-      <div className="particles">
-        {[...Array(20)].map((_, i) => (
+      <div className="shell">
+        <Hero />
+
+        <main className="console" id="main">
           <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${15 + Math.random() * 10}s`,
-            }}
-          ></div>
-        ))}
-      </div>
-
-      {/* Mouse follower glow */}
-      <div className="mouse-glow" style={{ display: 'none' }}></div>
-
-      {/* Content */}
-      <div className="content-wrapper">
-        <Navigation />
-        <div className="container-with-tabs">
-          <HomeNav activeSection={activeSection} setActiveSection={setActiveSection} />
-          <div className="top-container">
-            <div className="section-transition">
-              {activeSection === 'projects' ? (
-                <Projects />
-              ) : activeSection === 'work' ? (
-                <Work />
-              ) : activeSection === 'contact' ? (
-                <Contact />
-              ) : (
-                <About />
-              )}
-            </div>
+            ref={tablistRef}
+            className="console__tabs"
+            role="tablist"
+            aria-label="Sections"
+            onKeyDown={onKeyDown}
+          >
+            {TABS.map((tab, index) => {
+              const selected = tab === active;
+              return (
+                <button
+                  key={tab}
+                  id={`tab-${tab}`}
+                  role="tab"
+                  type="button"
+                  className="console__tab"
+                  aria-selected={selected}
+                  aria-controls="panel"
+                  /* Roving tabindex: one stop for the whole tablist. */
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => select(tab)}
+                >
+                  <span className="console__tab-index">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="console__tab-label">{labels[tab]}</span>
+                  {selected && <span className="console__tab-lit" aria-hidden="true" />}
+                </button>
+              );
+            })}
           </div>
-        </div>
-        <div className="main-container">
-          <Footer />
-        </div>
+
+          <section
+            className="console__panel"
+            id="panel"
+            role="tabpanel"
+            aria-labelledby={`tab-${active}`}
+            /* Focusable so keyboard users can reach panel content that has no
+               interactive elements of its own. */
+            tabIndex={0}
+          >
+            <Panel />
+          </section>
+        </main>
+
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

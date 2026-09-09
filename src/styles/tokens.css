@@ -1,0 +1,127 @@
+/**
+ * Design tokens — instrument panel system.
+ *
+ * Cascade layers are declared here, once, before anything else is imported.
+ * Everything downstream opts into a layer, so specificity never decides a
+ * winner: layer order does. No `!important` exists in this codebase.
+ */
+@layer tokens, base, layout, components, utilities;
+
+/** Registering a custom property gives the browser a type, which is what makes it interpolable. */
+@property --sweep-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@layer tokens {
+  :root {
+    /* Type scale — fluid, clamped, no media queries needed.
+       Ratio ~1.25 at small end, ~1.33 at large end. */
+    --step--2: clamp(0.69rem, 0.67rem + 0.11vw, 0.75rem);
+    --step--1: clamp(0.83rem, 0.79rem + 0.19vw, 0.94rem);
+    --step-0: clamp(1rem, 0.95rem + 0.26vw, 1.19rem);
+    --step-1: clamp(1.2rem, 1.11rem + 0.44vw, 1.48rem);
+    --step-2: clamp(1.44rem, 1.31rem + 0.68vw, 1.85rem);
+    --step-3: clamp(1.73rem, 1.53rem + 1.01vw, 2.31rem);
+    --step-4: clamp(2.07rem, 1.78rem + 1.46vw, 2.89rem);
+    --step-5: clamp(2.49rem, 2.07rem + 2.09vw, 3.62rem);
+
+    /* Font stacks. The Latin faces lead; every non-Latin script in the 28
+       supported locales falls through to a system face that actually has
+       the glyphs, so Arabic/Devanagari/CJK never render as tofu. */
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    --font-body:
+      'Inter', system-ui, -apple-system, 'Segoe UI', 'Noto Sans', 'Noto Sans Arabic',
+      'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Thai', 'Hiragino Sans',
+      'Yu Gothic UI', 'Malgun Gothic', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+
+    /* Spacing — a 4px base, named by role rather than t-shirt size so the
+       intent survives refactors. */
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-s: 1rem;
+    --space-m: 1.5rem;
+    --space-l: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4rem;
+    --space-3xl: 6rem;
+
+    /* Instruments have square corners and hairlines, not pill shapes. */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --hairline: 1px;
+
+    /* Motion. Instrument UIs snap — they do not bounce. The decelerate curve
+       is the workhorse; `spring` is used sparingly for the tab indicator. */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: linear(
+      0, 0.006, 0.025 2.8%, 0.101 6.1%, 0.539 18.9%, 0.721 25.3%, 0.849 31.5%, 0.937 38.1%,
+      0.968 41.8%, 0.991 45.7%, 1.006 50.1%, 1.015 55%, 1.017 63.9%, 1.001
+    );
+    --dur-fast: 120ms;
+    --dur-mid: 240ms;
+    --dur-slow: 420ms;
+
+    /* Layout */
+    --measure: 68ch;
+    --shell-max: 78rem;
+    --nav-h: 4rem;
+  }
+
+  /* ---- Dark: the default. Instrument enclosures are dark. ---- */
+  :root,
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-void: oklch(0.145 0.012 250);
+    --bg-panel: oklch(0.185 0.014 250);
+    --bg-raised: oklch(0.225 0.016 250);
+    --bg-inset: oklch(0.125 0.012 250);
+
+    --line-hairline: oklch(0.31 0.02 250);
+    --line-strong: oklch(0.42 0.025 250);
+
+    --ink-primary: oklch(0.96 0.005 250);
+    --ink-secondary: oklch(0.75 0.012 250);
+    --ink-muted: oklch(0.58 0.015 250);
+
+    /* One accent. A second hue only ever means "attention". */
+    --signal: oklch(0.84 0.16 178);
+    --signal-dim: oklch(0.62 0.12 178);
+    --alert: oklch(0.78 0.16 45);
+
+    --grid-line: oklch(0.30 0.02 250 / 0.5);
+    --trace-glow: oklch(0.84 0.16 178 / 0.35);
+    --shadow-panel: 0 1px 2px oklch(0 0 0 / 0.5), 0 8px 32px oklch(0 0 0 / 0.35);
+  }
+
+  /* ---- Light: a bench sheet. Paper, blueprint rules, ink. ---- */
+  :root[data-theme='light'] {
+    color-scheme: light;
+
+    --bg-void: oklch(0.981 0.003 250);
+    --bg-panel: oklch(1 0 0);
+    --bg-raised: oklch(0.965 0.005 250);
+    --bg-inset: oklch(0.945 0.006 250);
+
+    --line-hairline: oklch(0.885 0.008 250);
+    --line-strong: oklch(0.78 0.012 250);
+
+    --ink-primary: oklch(0.22 0.02 250);
+    --ink-secondary: oklch(0.44 0.02 250);
+    --ink-muted: oklch(0.58 0.018 250);
+
+    --signal: oklch(0.52 0.13 195);
+    --signal-dim: oklch(0.66 0.10 195);
+    --alert: oklch(0.55 0.17 35);
+
+    --grid-line: oklch(0.72 0.02 250 / 0.35);
+    --trace-glow: oklch(0.52 0.13 195 / 0.25);
+    --shadow-panel: 0 1px 2px oklch(0.5 0.02 250 / 0.08), 0 8px 28px oklch(0.5 0.02 250 / 0.08);
+  }
+}

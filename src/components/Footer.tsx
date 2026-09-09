@@ -1,105 +1,78 @@
-import { useState, ReactElement } from 'react';
+import { useId, useState, type ReactElement } from 'react';
 import { FaReact, FaPython, FaAws } from 'react-icons/fa';
+import { SiAnthropic } from 'react-icons/si';
 import { useLocale } from '../hooks/useLocale';
-import './Footer.scss';
+import './Footer.css';
 
-/** Props for the StackView component specifying the stack type */
-interface IStackViewProps {
-  spec: 'front' | 'back' | 'cloud';
-}
+type ModuleId = 'front' | 'back' | 'cloud' | 'ai';
 
-export const Footer = (): ReactElement => {
-  /** Get localized strings for the current language from the locale context. */
-  const { strings: i18n } = useLocale();
-
-  /** Tracks which stack section is expanded, if any */
-  const [expandedStack, setExpandedStack] = useState<'front' | 'back' | 'cloud' | null>(null);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-  const sections = [
-    {
-      id: 'front',
-      icon: FaReact,
-      title: i18n.FRONTEND,
-      description: i18n.FRONTEND_DESCRIPTION,
-      color: '#61dafb',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    },
-    {
-      id: 'back',
-      icon: FaPython,
-      title: i18n.BACKEND,
-      description: i18n.BACKEND_DESCRIPTION,
-      color: '#3776ab',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    },
-    {
-      id: 'cloud',
-      icon: FaAws,
-      title: 'CI/CD',
-      description: i18n.CI_CD_DESCRIPTION,
-      color: '#ff9900',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    },
-  ];
-
-  const handleCardClick = (sectionId: 'front' | 'back' | 'cloud') => {
-    setExpandedStack((prev) => (prev === sectionId ? null : sectionId));
-  };
-
-  return (
-    <div className="footer-wrapper">
-      <div className="footer-container">
-        <div className="footer-grid">
-          {sections.map((section) => {
-            const Icon = section.icon;
-            const isExpanded = expandedStack === section.id;
-            return (
-              <div
-                key={section.id}
-                className={`footer-card ${hoveredCard === section.id ? 'hovered' : ''} ${isExpanded ? 'expanded' : ''}`}
-                onMouseEnter={() => setHoveredCard(section.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => handleCardClick(section.id as 'front' | 'back' | 'cloud')}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className="footer-card-glow" style={{ background: section.gradient }}></div>
-                <div className="footer-card-content">
-                  <div className="footer-icon-wrapper">
-                    <Icon className="footer-icon" style={{ color: section.color }} />
-                  </div>
-                  <h3 className="footer-card-title">{section.title}</h3>
-                  {!isExpanded ? (
-                    <p className="footer-card-description">{section.description}</p>
-                  ) : (
-                    <StackView spec={section.id as 'front' | 'back' | 'cloud'} />
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
+const STACKS: Record<ModuleId, string[]> = {
+  front: ['React', 'TypeScript', 'JavaScript', 'Lit', 'HTML', 'CSS'],
+  back: ['Python', 'FastAPI', 'Flask', 'PostgreSQL', 'MQTT', 'Docker'],
+  cloud: ['AWS', 'GitHub Actions', 'Amazon S3', 'Bitbucket', 'Jenkins'],
+  ai: ['Claude Code', 'GitHub Copilot', 'Anthropic API', 'MCP', 'Figma', 'Confluence'],
 };
 
-/** Displays a list of technologies for the given stack type */
-const StackView = ({ spec }: IStackViewProps) => {
-  const stacks = {
-    front: ['React', 'TypeScript', 'JavaScript', 'Lit', 'HTML', 'CSS', 'VS Code'],
-    back: ['Python', 'Flask', 'HTTP', 'MQTT', 'SQL', 'Docker', 'MySQL Workbench', 'Postman'],
-    cloud: ['AWS', 'GitHub', 'Amazon S3', 'Bitbucket', 'Jenkins'],
-  };
+export const Footer = (): ReactElement => {
+  const { strings: i18n } = useLocale();
+  const baseId = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const [open, setOpen] = useState<ModuleId | null>(null);
+
+  const modules = [
+    { id: 'front' as const, icon: FaReact, title: i18n.FRONTEND, body: i18n.FRONTEND_DESCRIPTION },
+    { id: 'back' as const, icon: FaPython, title: i18n.BACKEND, body: i18n.BACKEND_DESCRIPTION },
+    { id: 'cloud' as const, icon: FaAws, title: 'CI/CD', body: i18n.CI_CD_DESCRIPTION },
+    { id: 'ai' as const, icon: SiAnthropic, title: i18n.AI_ENGINEERING, body: i18n.AI_ENGINEERING_DESCRIPTION },
+  ];
 
   return (
-    <div className="stack-list">
-      {stacks[spec].map((tech, index) => (
-        <div key={tech} className="stack-item" style={{ animationDelay: `${index * 0.05}s` }}>
-          <span className="stack-dot"></span>
-          {tech}
-        </div>
-      ))}
-    </div>
+    <footer className="rack">
+      <h2 className="rack__heading">{i18n.TECH_STACK}</h2>
+
+      <div className="rack__grid">
+        {modules.map(({ id, icon: Icon, title, body }) => {
+          const expanded = open === id;
+          const panelId = `${baseId}-${id}`;
+
+          return (
+            <section key={id} className={`module reveal${expanded ? ' module--open' : ''}`}>
+              <button
+                type="button"
+                className="module__toggle"
+                aria-expanded={expanded}
+                aria-controls={panelId}
+                onClick={() => setOpen((prev) => (prev === id ? null : id))}
+              >
+                <Icon className="module__icon" aria-hidden="true" />
+                <span className="module__title">{title}</span>
+                <span className="module__sign" aria-hidden="true" />
+              </button>
+
+              <p className="module__body">{body}</p>
+
+              {/* Collapsed with `grid-template-rows: 0fr → 1fr`, which animates
+                  to intrinsic height without measuring anything in JS. */}
+              <div id={panelId} className="module__drawer">
+                <ul className="module__stack">
+                  {STACKS[id].map((tech, index) => (
+                    <li
+                      key={tech}
+                      className="module__tech"
+                      style={{ '--i': index } as React.CSSProperties}
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <p className="rack__colophon">
+        <span>© {new Date().getFullYear()} Anthony Catalina</span>
+      </p>
+    </footer>
   );
 };

@@ -1,0 +1,35 @@
+@layer components {
+  .signal-field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* Its own layer: the canvas repaints every frame and must not drag the
+       rest of the document into the repaint. */
+    contain: strict;
+  }
+
+  .signal-field__canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  /**
+   * Falls off toward the edges so the trace never collides with text at the
+   * margins, and darkens the corners like glass over a lit panel.
+   */
+  .signal-field__vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 85% 65% at 50% 42%,
+        transparent 0%,
+        color-mix(in oklab, var(--bg-void) 45%, transparent) 55%,
+        var(--bg-void) 100%
+      ),
+      /* A flat veil over everything, so traces always sit behind copy rather
+         than competing with it. */
+      color-mix(in oklab, var(--bg-void) 30%, transparent);
+  }
+}

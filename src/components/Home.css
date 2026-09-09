@@ -1,0 +1,202 @@
+@layer layout {
+  .shell {
+    position: relative;
+    z-index: 1;
+    max-inline-size: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: var(--space-m);
+    padding-block-start: var(--nav-h);
+  }
+}
+
+@layer components {
+  /**
+   * The enclosure. The channel selector and the readout share one surface, so
+   * long-form copy always sits on a substrate and the signal traces read as
+   * being *behind* the instrument rather than running through the text.
+   */
+  .console {
+    margin-block-start: var(--space-l);
+    padding-inline: clamp(var(--space-s), 2.5vw, var(--space-l));
+    padding-block-end: var(--space-2xs);
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-panel) 78%, transparent);
+    backdrop-filter: blur(12px) saturate(1.2);
+    transition:
+      background-color var(--dur-slow) var(--ease-out),
+      border-color var(--dur-slow) var(--ease-out);
+  }
+
+  /* ---- Channel selector ---- */
+
+  .console__tabs {
+    display: flex;
+    /* Spacing lives in the gap rather than in each tab's inline padding, so
+       the first tab's text aligns with the panel copy directly beneath it. */
+    gap: var(--space-m);
+    overflow-x: auto;
+    /* Hide the scrollbar but keep the overflow scrollable on narrow screens. */
+    scrollbar-width: none;
+    border-block-end: var(--hairline) solid var(--line-hairline);
+
+    /* Signals "there is more" when the tabs overflow. Scoped to the widths
+       where overflow is actually possible, so the mask never has to interact
+       with the indicator's view transition on desktop. */
+    @media (width < 48rem) {
+      mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .console__tab {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    padding-block: var(--space-s);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      color: var(--ink-secondary);
+    }
+
+    &[aria-selected='true'] {
+      color: var(--ink-primary);
+    }
+  }
+
+  .console__tab-index {
+    font-size: 0.75em;
+    color: var(--ink-muted);
+    opacity: 0.7;
+  }
+
+  .console__tab[aria-selected='true'] .console__tab-index {
+    color: var(--signal);
+    opacity: 1;
+  }
+
+  /**
+   * The lit channel bar.
+   *
+   * Only one of these exists in the DOM at a time. Naming it means the browser
+   * treats the instance under the old tab and the instance under the new tab
+   * as the same element, and tweens position and width between them — a
+   * morphing indicator with no measuring, no refs, and no spring library.
+   */
+  .console__tab-lit {
+    position: absolute;
+    inset-block-end: -1px;
+    inset-inline: 0;
+    block-size: 2px;
+    background: var(--signal);
+    box-shadow: 0 0 12px var(--trace-glow);
+    view-transition-name: tab-lit;
+  }
+
+  /* ---- Panel ---- */
+
+  .console__panel {
+    /* Sections size themselves against the panel, not the viewport, so they
+       stay correct regardless of what the shell around them does. */
+    container-type: inline-size;
+    container-name: panel;
+    padding-block: var(--space-m) var(--space-l);
+    /* No background of its own: the enclosure supplies the surface, so it
+       stays put while only the content cross-fades during a transition. */
+    view-transition-name: panel;
+
+    &:focus-visible {
+      outline-offset: -2px;
+    }
+  }
+
+  /* ---- View transitions ---- */
+
+  ::view-transition-old(panel) {
+    animation: panel-out 140ms var(--ease-in-out) both;
+  }
+
+  ::view-transition-new(panel) {
+    animation: panel-in 220ms var(--ease-out) both;
+  }
+
+  @keyframes panel-out {
+    to {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  /* The indicator morphs; it must not also cross-fade or it ghosts. */
+  ::view-transition-old(tab-lit),
+  ::view-transition-new(tab-lit) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-group(tab-lit) {
+    animation-duration: 280ms;
+    animation-timing-function: var(--ease-spring);
+  }
+
+  /**
+   * The theme swap drives its own clip-path animation from JS (see
+   * `circularReveal`), so the default root cross-fade is disabled and the two
+   * snapshots are stacked instead — new above old, revealed by the wipe.
+   */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 0;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  /**
+   * Scroll-driven reveal. No IntersectionObserver, no state, no JS at all —
+   * the animation is driven by the element's own position in the scrollport,
+   * so it scrubs backward when you scroll back up.
+   */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+      }
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+}

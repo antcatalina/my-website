@@ -1,0 +1,411 @@
+@layer components {
+  /* ---- About ---- */
+
+  .section__lead {
+    max-inline-size: var(--measure);
+    color: var(--ink-primary);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .section__body {
+    max-inline-size: var(--measure);
+    margin-block-start: var(--space-s);
+    color: var(--ink-secondary);
+  }
+
+  /* ---- Project entries ---- */
+
+  .entries {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-m);
+    border-block-start: var(--hairline) solid var(--line-hairline);
+
+    &:first-child {
+      border-block-start: none;
+      padding-block-start: 0;
+    }
+
+    /* The panel is a container, so entries respond to the panel's width
+       rather than the viewport's — correct even if the shell changes. */
+    @container panel (width < 32rem) {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xs);
+    }
+  }
+
+  .entry__index {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.1em;
+    /* Optically aligns the numeral with the title's cap height. */
+    padding-block-start: 0.55em;
+  }
+
+  .entry__title {
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .entry__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    text-decoration: none;
+
+    & > svg {
+      font-size: 0.6em;
+      opacity: 0.5;
+      transition:
+        translate var(--dur-fast) var(--ease-out),
+        opacity var(--dur-fast) var(--ease-out);
+    }
+
+    &:hover > svg {
+      translate: 2px -2px;
+      opacity: 1;
+    }
+  }
+
+  .entry__role {
+    margin-block-start: var(--space-3xs);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .entry__body {
+    max-inline-size: var(--measure);
+    margin-block-start: var(--space-2xs);
+    color: var(--ink-secondary);
+    font-size: var(--step--1);
+  }
+
+  /* ---- Stack chips ---- */
+
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-block-start: var(--space-xs);
+  }
+
+  .chip {
+    padding: 0.15em 0.5em;
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-sm);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.03em;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .entry:hover .chip {
+    border-color: color-mix(in oklab, var(--signal) 45%, var(--line-hairline));
+    color: var(--ink-secondary);
+  }
+
+  /* ---- Experience timeline ---- */
+
+  .timeline {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline__role {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-m);
+
+    /* Connector running from this role's node down to the next one. The last
+       role has nothing below it, so it draws no rail. */
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-start: calc(var(--space-m) + var(--node-offset) + 3.5px);
+      inset-block-end: 0;
+      inset-inline-start: 3px;
+      inline-size: 1px;
+      background: var(--line-hairline);
+    }
+
+    &:last-child::before {
+      content: none;
+    }
+  }
+
+  .timeline {
+    /* Vertical distance from the top of a role to its node, chosen to line the
+       node up with the centre of the company logo beside it. */
+    --node-offset: 1.1rem;
+  }
+
+  .timeline__node {
+    inline-size: 7px;
+    block-size: 7px;
+    margin-block-start: var(--node-offset);
+    border-radius: 50%;
+    background: var(--line-strong);
+    z-index: 1;
+  }
+
+  .timeline__node--live {
+    background: var(--signal);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--signal) 18%, transparent);
+    animation: lamp 2.4s var(--ease-in-out) infinite;
+  }
+
+  .timeline__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .timeline__logo {
+    display: grid;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    flex-shrink: 0;
+    padding: 0.35rem;
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-md);
+    background: var(--bg-panel);
+
+    & img {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .timeline__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin-block-start: var(--space-2xs);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.05em;
+  }
+
+  .timeline__note {
+    margin-block-start: var(--space-3xs);
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+  }
+
+  .bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    max-inline-size: var(--measure);
+    margin-block-start: var(--space-s);
+    color: var(--ink-secondary);
+    font-size: var(--step--1);
+
+    & li {
+      position: relative;
+      padding-inline-start: var(--space-s);
+
+      /* An en dash rather than a bullet — spec-sheet, not marketing deck. */
+      &::before {
+        content: '';
+        position: absolute;
+        inset-block-start: 0.7em;
+        inset-inline-start: 0;
+        inline-size: 0.55rem;
+        block-size: 1px;
+        background: var(--line-strong);
+      }
+    }
+  }
+
+  /* ---- Contact form ---- */
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    max-inline-size: 42rem;
+  }
+
+  .form__row {
+    display: grid;
+    gap: var(--space-s);
+
+    @container panel (width >= 34rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Off-screen rather than `display:none` — some bots skip hidden inputs. */
+  .form__hp {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+
+    & label {
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: var(--step--2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    & input,
+    & select,
+    & textarea {
+      padding: var(--space-2xs) var(--space-xs);
+      border: var(--hairline) solid var(--line-hairline);
+      border-radius: var(--radius-md);
+      background: var(--bg-inset);
+      color: var(--ink-primary);
+      font-size: var(--step--1);
+      transition:
+        border-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+
+      &::placeholder {
+        color: var(--ink-muted);
+      }
+
+      &:hover {
+        border-color: var(--line-strong);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--signal);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 18%, transparent);
+      }
+
+      /* Only flag invalid fields the visitor has actually engaged with —
+         `:invalid` alone would light up every required field on first paint. */
+      &:user-invalid {
+        border-color: var(--alert);
+      }
+    }
+
+    & textarea {
+      min-block-size: 8rem;
+      resize: vertical;
+    }
+  }
+
+  .form__error {
+    color: var(--alert);
+    font-size: var(--step--1);
+
+    /* Reserves no space when empty, so the button does not jump. */
+    &:empty {
+      display: none;
+    }
+  }
+
+  .btn {
+    align-self: flex-start;
+    padding: var(--space-2xs) var(--space-m);
+    border: var(--hairline) solid var(--signal);
+    border-radius: var(--radius-md);
+    background: color-mix(in oklab, var(--signal) 14%, transparent);
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+
+    &:hover:not(:disabled) {
+      background: var(--signal);
+      color: var(--bg-void);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: progress;
+    }
+  }
+
+  .btn--ghost {
+    border-color: var(--line-strong);
+    background: transparent;
+    color: var(--ink-secondary);
+
+    &:hover:not(:disabled) {
+      border-color: var(--signal);
+      background: transparent;
+      color: var(--signal);
+    }
+  }
+
+  /* ---- Contact success ---- */
+
+  .contact__done {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+    padding-block: var(--space-l);
+  }
+
+  .contact__seal {
+    color: var(--signal);
+    inline-size: 2.75rem;
+
+    & svg {
+      inline-size: 100%;
+      block-size: auto;
+    }
+
+    /* The check draws itself once, rather than popping in. */
+    & path {
+      stroke-dasharray: 30;
+      animation: draw-check var(--dur-slow) var(--ease-out) both;
+    }
+  }
+
+  @keyframes draw-check {
+    from {
+      stroke-dashoffset: 30;
+    }
+  }
+}

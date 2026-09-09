@@ -1,0 +1,168 @@
+@layer components {
+  .menu {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .menu__trigger {
+    display: grid;
+    place-items: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-md);
+    background: var(--bg-panel);
+    color: var(--ink-secondary);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      border-color: var(--signal);
+      color: var(--signal);
+    }
+
+    &[aria-expanded='true'] {
+      border-color: var(--signal);
+      color: var(--signal);
+      background: color-mix(in oklab, var(--signal) 10%, var(--bg-panel));
+    }
+  }
+
+  /* Reset the UA popover styles — border, background, padding, centring. */
+  .menu__panel {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: var(--space-3xs);
+    overflow: visible;
+    min-inline-size: 11rem;
+    border: var(--hairline) solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-panel) 92%, transparent);
+    backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: var(--shadow-panel);
+    color: var(--ink-secondary);
+
+    /* Fallback coordinates, written by JS when anchor positioning is absent. */
+    inset-block-start: var(--menu-top, 4rem);
+    inset-inline-end: var(--menu-right, 1rem);
+
+    /* Animate in and out of the top layer. `display` and `overlay` need
+       `transition-behavior: allow-discrete` or the exit frame is skipped and
+       the panel vanishes instantly. */
+    opacity: 0;
+    translate: 0 -0.5rem;
+    scale: 0.98;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      translate var(--dur-mid) var(--ease-out),
+      scale var(--dur-mid) var(--ease-out),
+      display var(--dur-mid) allow-discrete,
+      overlay var(--dur-mid) allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+
+    /* Entry side of the discrete transition. */
+    @starting-style {
+      &:popover-open {
+        opacity: 0;
+        translate: 0 -0.5rem;
+        scale: 0.98;
+      }
+    }
+  }
+
+  .menu__panel::backdrop {
+    background: transparent;
+  }
+
+  /**
+   * Where CSS anchor positioning exists, the panel tethers itself to its
+   * trigger with no measuring, no scroll listeners, and no reflow on resize.
+   * `position-try-fallbacks` flips it above the trigger near the bottom edge.
+   */
+  @supports (anchor-name: --probe) {
+    .menu__trigger {
+      anchor-name: var(--anchor);
+    }
+
+    .menu__panel {
+      position-anchor: var(--anchor);
+      inset: auto;
+      position-area: block-end span-inline-start;
+      margin-block-start: var(--space-2xs);
+      position-try-fallbacks: flip-block;
+    }
+  }
+
+  .menu__panel--scroll .menu__list {
+    max-block-size: min(22rem, 60dvh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .menu__list {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .menu__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    inline-size: 100%;
+    padding: var(--space-2xs) var(--space-xs);
+    border-radius: var(--radius-md);
+    color: var(--ink-secondary);
+    font-size: var(--step--1);
+    text-align: start;
+    white-space: nowrap;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--bg-raised);
+      color: var(--ink-primary);
+    }
+
+    &[aria-checked='true'] {
+      color: var(--signal);
+    }
+  }
+
+  /* A lit indicator lamp rather than a checkmark. */
+  .menu__item-mark {
+    inline-size: 5px;
+    block-size: 5px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--line-strong);
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+
+  .menu__item[aria-checked='true'] .menu__item-mark {
+    background: var(--signal);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 22%, transparent);
+  }
+
+  .menu__item-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

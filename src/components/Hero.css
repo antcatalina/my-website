@@ -1,0 +1,240 @@
+@layer components {
+  .hero {
+    display: grid;
+    gap: var(--space-l);
+    padding-block: var(--space-2xl) var(--space-xl);
+    grid-template-areas:
+      'plate'
+      'body'
+      'readout';
+    justify-items: start;
+
+    /* Portrait moves alongside the type once there is room for both. */
+    @media (width >= 46rem) {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'body plate'
+        'readout readout';
+      align-items: center;
+      gap: var(--space-xl);
+    }
+  }
+
+  .hero__body {
+    grid-area: body;
+  }
+
+  .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    margin-block-end: var(--space-s);
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero__rule {
+    inline-size: var(--space-l);
+    block-size: 1px;
+    background: currentColor;
+    /* Draws itself in on load. */
+    transform-origin: left;
+    animation: draw-rule var(--dur-slow) var(--ease-out) both;
+  }
+
+  @keyframes draw-rule {
+    from {
+      scale: 0 1;
+    }
+  }
+
+  .hero__title {
+    font-size: var(--step-5);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    max-inline-size: 12ch;
+    /* Long compound titles in German/Finnish would otherwise overflow. */
+    hyphens: auto;
+  }
+
+  .hero__place {
+    margin-block-start: var(--space-s);
+    color: var(--ink-secondary);
+    font-size: var(--step-0);
+  }
+
+  .hero__coords {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Portrait plate ---- */
+
+  .hero__plate {
+    grid-area: plate;
+    position: relative;
+    margin: 0;
+    inline-size: clamp(9rem, 34vw, 15rem);
+    aspect-ratio: 1;
+    padding: var(--space-2xs);
+    border: var(--hairline) solid var(--line-hairline);
+    background: var(--bg-panel);
+  }
+
+  .hero__portrait {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    /* Reads as an instrument capture until you look closer. */
+    filter: grayscale(1) contrast(1.08);
+    transition: filter var(--dur-slow) var(--ease-out);
+  }
+
+  .hero__plate:hover .hero__portrait {
+    filter: grayscale(0) contrast(1);
+  }
+
+  /* Fine horizontal raster over the portrait, fading on hover. */
+  .hero__scan {
+    position: absolute;
+    inset: var(--space-2xs);
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--bg-void) 40%, transparent) 0 1px,
+      transparent 1px 3px
+    );
+    opacity: 0.55;
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+
+  .hero__plate:hover .hero__scan {
+    opacity: 0.15;
+  }
+
+  .hero__tick {
+    position: absolute;
+    inline-size: 9px;
+    block-size: 9px;
+    border: 1px solid var(--signal);
+  }
+
+  .hero__tick--tl {
+    inset-block-start: -1px;
+    inset-inline-start: -1px;
+    border-inline-end: none;
+    border-block-end: none;
+  }
+
+  .hero__tick--tr {
+    inset-block-start: -1px;
+    inset-inline-end: -1px;
+    border-inline-start: none;
+    border-block-end: none;
+  }
+
+  .hero__tick--bl {
+    inset-block-end: -1px;
+    inset-inline-start: -1px;
+    border-inline-end: none;
+    border-block-start: none;
+  }
+
+  .hero__tick--br {
+    inset-block-end: -1px;
+    inset-inline-end: -1px;
+    border-inline-start: none;
+    border-block-start: none;
+  }
+
+  /* ---- Readout strip ---- */
+
+  /**
+   * Explicit column counts rather than `auto-fit`: the dividers between cells
+   * are drawn as per-cell borders, and only a known column count lets the
+   * rules below strip the leading border from whichever cell starts a row.
+   * With `auto-fit` the wrap point is unknowable, and wrapped rows get a
+   * stray divider hanging off their left edge.
+   */
+  .hero__readout {
+    grid-area: readout;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    inline-size: 100%;
+    margin: 0;
+    border: var(--hairline) solid var(--line-hairline);
+    background: color-mix(in oklab, var(--bg-panel) 60%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero__cell {
+    padding: var(--space-xs) var(--space-s);
+    border-inline-start: var(--hairline) solid var(--line-hairline);
+  }
+
+  /* Two columns: odd cells start a row; cells 3+ start the second row. */
+  .hero__cell:nth-child(odd) {
+    border-inline-start: none;
+  }
+
+  .hero__cell:nth-child(n + 3) {
+    border-block-start: var(--hairline) solid var(--line-hairline);
+  }
+
+  @media (width >= 46rem) {
+    .hero__readout {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* One row again: every cell but the first gets its divider back. */
+    .hero__cell:nth-child(odd) {
+      border-inline-start: var(--hairline) solid var(--line-hairline);
+    }
+
+    .hero__cell:first-child {
+      border-inline-start: none;
+    }
+
+    .hero__cell:nth-child(n + 3) {
+      border-block-start: none;
+    }
+  }
+
+  .hero__cell dt {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+  }
+
+  .hero__cell dd {
+    margin: var(--space-3xs) 0 0;
+    color: var(--ink-primary);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+
+  .hero__status {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    color: var(--signal);
+  }
+
+  .hero__lamp {
+    inline-size: 6px;
+    block-size: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 20%, transparent);
+    animation: lamp 2s var(--ease-in-out) infinite;
+  }
+}

@@ -1,0 +1,182 @@
+@layer components {
+  .rack {
+    padding-block: var(--space-xl) var(--space-l);
+    border-block-start: var(--hairline) solid var(--line-hairline);
+  }
+
+  .rack__heading {
+    margin-block-end: var(--space-m);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .rack__grid {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+
+  .module {
+    position: relative;
+    padding: var(--space-s);
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-lg);
+    background: color-mix(in oklab, var(--bg-panel) 55%, transparent);
+    backdrop-filter: blur(10px);
+    transition:
+      border-color var(--dur-mid) var(--ease-out),
+      background-color var(--dur-mid) var(--ease-out);
+
+    &:hover {
+      border-color: var(--line-strong);
+    }
+  }
+
+  .module--open {
+    border-color: color-mix(in oklab, var(--signal) 55%, var(--line-hairline));
+  }
+
+  .module__toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    inline-size: 100%;
+    text-align: start;
+  }
+
+  .module__icon {
+    font-size: 1.25rem;
+    color: var(--ink-muted);
+    flex-shrink: 0;
+    transition: color var(--dur-mid) var(--ease-out);
+  }
+
+  .module:hover .module__icon,
+  .module--open .module__icon {
+    color: var(--signal);
+  }
+
+  .module__title {
+    flex: 1;
+    color: var(--ink-primary);
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 500;
+  }
+
+  /* A plus that rotates into a minus. */
+  .module__sign {
+    position: relative;
+    inline-size: 11px;
+    block-size: 11px;
+    flex-shrink: 0;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 5px;
+      inset-inline-start: 0;
+      inline-size: 11px;
+      block-size: 1px;
+      background: var(--ink-muted);
+      transition:
+        rotate var(--dur-mid) var(--ease-out),
+        background-color var(--dur-mid) var(--ease-out);
+    }
+
+    &::after {
+      rotate: 90deg;
+    }
+  }
+
+  .module--open .module__sign::after {
+    rotate: 0deg;
+  }
+
+  .module--open .module__sign::before,
+  .module--open .module__sign::after {
+    background: var(--signal);
+  }
+
+  .module__body {
+    margin-block-start: var(--space-2xs);
+    color: var(--ink-secondary);
+    font-size: var(--step--1);
+  }
+
+  /**
+   * `0fr → 1fr` on a single grid row animates to the content's intrinsic
+   * height — the thing `height: auto` cannot do — with no ResizeObserver and
+   * no measured pixel value.
+   */
+  .module__drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    /* `visibility` keeps collapsed content out of the accessibility tree and
+       the tab order. It transitions discretely — flipping to `visible`
+       immediately on open, and to `hidden` only once the row has closed. */
+    visibility: hidden;
+    transition:
+      grid-template-rows var(--dur-slow) var(--ease-out),
+      visibility var(--dur-slow);
+  }
+
+  .module--open .module__drawer {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  .module__stack {
+    /* The inner element must clip, or the content spills out of the 0fr row. */
+    overflow: hidden;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    min-block-size: 0;
+  }
+
+  .module__tech {
+    margin-block-start: var(--space-2xs);
+    padding: 0.15em 0.5em;
+    border: var(--hairline) solid var(--line-hairline);
+    border-radius: var(--radius-sm);
+    color: var(--ink-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+
+    opacity: 0;
+    translate: 0 4px;
+  }
+
+  .module--open .module__tech {
+    /* Staggered off the item's index, set inline as a custom property. */
+    animation: tech-in var(--dur-mid) var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 40ms + 80ms);
+  }
+
+  @keyframes tech-in {
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .rack__colophon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-block-start: var(--space-l);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--hairline) solid var(--line-hairline);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+  }
+}

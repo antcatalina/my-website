@@ -1,201 +1,202 @@
-import './Navigation.scss';
+import { useEffect, useId, useRef, useState, type ReactElement } from 'react';
+import { BsBrightnessHigh, BsMoon, BsDisplay, BsArrowUpRight } from 'react-icons/bs';
 import resume from '../files/Catalina_Resume.pdf';
-import { ReactElement, useEffect, useState } from 'react';
-import { useTheme, Theme } from '../hooks/useTheme';
+import { useTheme, type Theme } from '../hooks/useTheme';
 import { useLocale } from '../hooks/useLocale';
-import { BsBrightnessHigh, BsMoon } from 'react-icons/bs';
-import { LocaleKey, locales, TARGET_LANGUAGES } from '../locales';
-import '/node_modules/flag-icons/css/flag-icons.min.css';
+import { locales, TARGET_LANGUAGES } from '../locales';
+import { circularReveal } from '../lib/viewTransition';
+import { Menu, MenuItem } from './Menu';
+import 'flag-icons/css/flag-icons.min.css';
+import './Navigation.css';
 
 export type LocaleCode = keyof typeof TARGET_LANGUAGES;
 
-export const Navigation = (): ReactElement => {
-  /** Get localized strings for the current language from the locale context. */
-  const { strings: i18n } = useLocale();
+/**
+ * Language codes whose ISO-639 tag differs from the ISO-3166 region the flag
+ * library keys on.
+ */
+const FLAG_OVERRIDES: Record<string, string> = {
+  'en-us': 'us',
+  'en-gb': 'gb',
+  ar: 'sa',
+  vi: 'vn',
+  ko: 'kr',
+  ja: 'jp',
+  da: 'dk',
+  uk: 'ua',
+  hi: 'in',
+  cs: 'cz',
+  el: 'gr',
+  zh: 'cn',
+  sv: 'se',
+};
 
-  /** Provides access to the current theme and a setter function. */
-  const { theme, setTheme } = useTheme();
+const flagFor = (code: string) => FLAG_OVERRIDES[code] ?? code;
 
-  /**  Access the current locale, and a function to update it, from the global Locale context */
-  const { locale, setLocale } = useLocale();
+const THEME_ICONS: Record<Theme, typeof BsMoon> = {
+  light: BsBrightnessHigh,
+  dark: BsMoon,
+  system: BsDisplay,
+};
 
-  /** The list of available theme options displayed in the dropdown. */
-  const themes: Theme[] = ['light', 'dark', 'system'];
+/**
+ * Live local time at the author's location.
+ *
+ * Isolated into its own component deliberately: it re-renders once a second,
+ * and keeping the interval here means the header, nav links, and menus around
+ * it never re-render at all.
+ */
+const StationClock = (): ReactElement => {
+  const [now, setNow] = useState(() => new Date());
 
-  /** Tracks the system's current color-scheme preference (light/dark). */
-  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  );
-
-  /** State for mobile menu toggle */
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-
-  /** State for mobile dropdown toggles */
-  const [mobileThemeOpen, setMobileThemeOpen] = useState<boolean>(false);
-  const [mobileLangOpen, setMobileLangOpen] = useState<boolean>(false);
-
-  /** Resolves the *effective* theme being shown on screen. */
-  const resolvedTheme = theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : theme;
-
-  /**
-   * Some language codes do not match the class names used by the
-   * flag icon library (e.g., fi fi-XX).
-   * We override them here so the correct flag is displayed
-   */
-  const flagCodeMap: Record<string, string> = {
-    'en-us': 'us',
-    'en-gb': 'gb',
-    ar: 'sa',
-    vi: 'vn',
-    ko: 'kr',
-    ja: 'jp',
-    da: 'dk',
-    uk: 'ua',
-    hi: 'in',
-    cs: 'cz',
-    el: 'gr',
-    zh: 'cn',
-    sv: 'se',
-  };
-
-  /** Listen for system theme changes if "system" is selected. */
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const listener = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
-    mq.addEventListener('change', listener);
-    return () => mq.removeEventListener('change', listener);
+    /* Align the first tick to the next second boundary, then run on a steady
+       1s interval, so the display never sits visibly stale. */
+    let interval: number;
+    const timeout = window.setTimeout(
+      () => {
+        setNow(new Date());
+        interval = window.setInterval(() => setNow(new Date()), 1000);
+      },
+      1000 - (Date.now() % 1000)
+    );
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, []);
 
-  /** Close mobile dropdowns when mobile menu closes */
-  useEffect(() => {
-    if (!mobileMenuOpen) {
-      setMobileThemeOpen(false);
-      setMobileLangOpen(false);
-    }
-  }, [mobileMenuOpen]);
+  const time = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'America/Denver',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(now);
 
   return (
-    <nav className="navigation-wrapper">
-      <div className="navigation-container">
-        <div className="navigation-content">
-          {/* Brand/Logo */}
-          <a className="nav-brand" href="/">
-            <span className="nav-brand-text">Anthony Catalina</span>
-          </a>
+    <span className="nav__clock" aria-hidden="true">
+      <span className="nav__lamp" />
+      {time} MT
+    </span>
+  );
+};
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation"
-          >
-            <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+const EXTERNAL_LINKS = [
+  { href: 'https://www.linkedin.com/in/anthony-catalina/', label: 'LinkedIn' },
+  { href: 'https://www.github.com/antcatalina/', label: 'GitHub' },
+];
 
-          {/* Navigation Links */}
-          <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a
-              className="nav-link"
-              href={resume}
-              target="_blank"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {i18n.RESUME}
-            </a>
-            <a
-              className="nav-link"
-              href="https://www.linkedin.com/in/anthony-catalina/"
-              target="_blank"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              LinkedIn
-            </a>
-            <a
-              className="nav-link"
-              href="https://www.github.com/antcatalina/"
-              target="_blank"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              GitHub
-            </a>
+export const Navigation = (): ReactElement => {
+  const { strings: i18n, locale, setLocale } = useLocale();
+  const { theme, resolved, setTheme, themes } = useTheme();
+  const themeAnchor = useRef<HTMLDivElement>(null);
+  const mobileId = `nav${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
 
-            {/* Theme Toggle Dropdown */}
-            <div className={`nav-dropdown-container ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-              <div className="nav-dropdown">
-                <button
-                  className="nav-dropdown-toggle"
-                  type="button"
-                  title="Select theme"
-                  onClick={() => setMobileThemeOpen(!mobileThemeOpen)}
+  const ThemeIcon = THEME_ICONS[theme];
+
+  /**
+   * Swap the palette behind a circular wipe that spreads from the control the
+   * visitor actually pressed, instead of a hard cut across the whole page.
+   */
+  const chooseTheme = (next: Theme) => {
+    const rect = themeAnchor.current?.getBoundingClientRect();
+    const origin = rect
+      ? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+      : { x: window.innerWidth, y: 0 };
+
+    circularReveal(() => setTheme(next), origin);
+  };
+
+  const links = (
+    <>
+      <a className="nav__link" href={resume} target="_blank" rel="noreferrer">
+        {i18n.RESUME}
+        <BsArrowUpRight aria-hidden="true" />
+      </a>
+      {EXTERNAL_LINKS.map(({ href, label }) => (
+        <a key={label} className="nav__link" href={href} target="_blank" rel="noreferrer">
+          {label}
+          <BsArrowUpRight aria-hidden="true" />
+        </a>
+      ))}
+    </>
+  );
+
+  return (
+    <header className="nav">
+      <div className="nav__inner">
+        <a className="nav__brand" href="/">
+          <span className="nav__brand-mark" aria-hidden="true" />
+          <span className="nav__brand-name">Anthony Catalina</span>
+        </a>
+
+        <StationClock />
+
+        <nav className="nav__links" aria-label="Primary">
+          {links}
+        </nav>
+
+        <div className="nav__controls">
+          <div ref={themeAnchor} className="nav__control">
+            <Menu label="Select theme" trigger={<ThemeIcon size={16} />}>
+              {themes.map((option) => (
+                <MenuItem
+                  key={option}
+                  selected={theme === option}
+                  onSelect={() => chooseTheme(option)}
                 >
-                  {resolvedTheme === 'dark' ? <BsMoon size={18} /> : <BsBrightnessHigh size={18} />}
-                </button>
-
-                <ul
-                  className={`nav-dropdown-menu ${mobileThemeOpen ? 'mobile-dropdown-open' : ''}`}
-                >
-                  {themes.map((t) => (
-                    <li key={t}>
-                      <button
-                        className={`nav-dropdown-item ${theme === t ? 'active' : ''}`}
-                        onClick={() => {
-                          setTheme(t);
-                          setMobileMenuOpen(false);
-                          setMobileThemeOpen(false);
-                        }}
-                      >
-                        {t.charAt(0).toUpperCase() + t.slice(1)}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Language Dropdown */}
-              <div className="nav-dropdown">
-                <button
-                  className="nav-dropdown-toggle"
-                  type="button"
-                  title="Select language"
-                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
-                >
-                  <span className={`fi fi-${flagCodeMap[locale] || locale}`}></span>
-                </button>
-
-                <ul
-                  className={`nav-dropdown-menu lang-dropdown ${mobileLangOpen ? 'mobile-dropdown-open' : ''}`}
-                >
-                  {Object.entries(TARGET_LANGUAGES).map(([code]) => {
-                    const flagCode = flagCodeMap[code] || code;
-                    const langKey =
-                      `${code.toUpperCase()}_LANG` as keyof (typeof locales)[LocaleKey];
-
-                    return (
-                      <li key={code}>
-                        <button
-                          className={`nav-dropdown-item ${locale === code ? 'active' : ''}`}
-                          onClick={() => {
-                            setLocale(code as LocaleCode);
-                            setMobileMenuOpen(false);
-                            setMobileLangOpen(false);
-                          }}
-                        >
-                          <span className={`fi fi-${flagCode}`}></span>{' '}
-                          {locales[locale]?.[langKey] || TARGET_LANGUAGES[code as LocaleCode]}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+                  {option.charAt(0).toUpperCase() + option.slice(1)}
+                </MenuItem>
+              ))}
+            </Menu>
           </div>
+
+          <Menu
+            label="Select language"
+            scrollable
+            trigger={<span className={`fi fi-${flagFor(locale)}`} />}
+          >
+            {Object.keys(TARGET_LANGUAGES).map((code) => {
+              /* Language names are shown in the *currently selected* language,
+                 falling back to the English name when that locale file has no
+                 entry for it. */
+              const key = `${code.toUpperCase()}_LANG`;
+              const active = locales[locale] as Record<string, string | undefined>;
+              return (
+                <MenuItem
+                  key={code}
+                  selected={locale === code}
+                  onSelect={() => setLocale(code as LocaleCode)}
+                >
+                  <span className={`fi fi-${flagFor(code)}`} aria-hidden="true" />
+                  {active?.[key] ?? TARGET_LANGUAGES[code as LocaleCode]}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+
+          {/* Mobile disclosure. Also a popover, so it inherits light-dismiss
+              and Escape without a click-outside listener or a state flag. */}
+          <button
+            type="button"
+            className="nav__burger"
+            popoverTarget={mobileId}
+            aria-label="Menu"
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
         </div>
       </div>
-    </nav>
+
+      <div id={mobileId} popover="auto" className="nav__sheet">
+        <nav aria-label="Primary (mobile)">{links}</nav>
+        <p className="nav__sheet-meta">
+          {resolved === 'dark' ? 'DARK' : 'LIGHT'} · {locale.toUpperCase()}
+        </p>
+      </div>
+    </header>
   );
 };
